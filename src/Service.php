@@ -8,9 +8,6 @@
 
 namespace DotMailer\Api;
 
-class ServiceException extends Exception {
-}
-
 class Service {
 
 	/** @var \DotMailer\Api\IRestClient */

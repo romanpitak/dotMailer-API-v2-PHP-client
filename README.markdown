@@ -6,6 +6,8 @@ PHP client library for the dotMailer v2 (REST) API.
 
 TODO
 ----
+add custom exceptions
+
 solve error codes in RestClient
 
 add multi-account support

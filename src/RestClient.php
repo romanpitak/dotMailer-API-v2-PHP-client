@@ -13,9 +13,6 @@ namespace DotMailer\Api;
 use RestClient\Client,
 	RestClient\Request;
 
-class RestClientException extends Exception {
-}
-
 /**
  * Class RestClient
  *
@@ -83,7 +80,7 @@ class RestClient implements IRestClient {
 			default:
 
 				// todo solve this maybe nicer?
-				throw new RestClientException($response->getParsedResponse(), $returnCode);
+				throw new \Exception($response->getParsedResponse(), $returnCode);
 
 				$message = 'ERROR';
 				$response = $response->getParsedResponse();
@@ -93,7 +90,7 @@ class RestClient implements IRestClient {
 				} elseif ("" != $result->getError()) {
 					$message = $result->getError();
 				}
-				throw new RestClientException($message, $returnCode);
+				throw new \Exception($message, $returnCode);
 		}
 	}
 

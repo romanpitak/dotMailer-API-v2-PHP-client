@@ -8,9 +8,6 @@
 
 namespace DotMailer\Api;
 
-class Exception extends \Exception {
-}
-
 /**
  * Class Account
  * @package DotMailer\Api
@@ -42,7 +39,7 @@ class Account extends Service {
 	private function getService($serviceName) {
 		if (!isset($this->serviceInstances[$serviceName])) {
 			if (!isset($this->serviceClasses[$serviceName])) {
-				throw new ServiceException(sprintf('Service not defined "%s"', $serviceName));
+				throw new \Exception(sprintf('Service not defined "%s"', $serviceName));
 			}
 			$this->serviceInstances[$serviceName] = new $this->serviceClasses[$serviceName]($this->restClient);
 		}
