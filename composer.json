@@ -22,5 +22,10 @@
     ],
     "require": {
         "romanpitak/php-rest-client": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "DotMailer\\Api\\": "src/"
+        }
     }
 }
