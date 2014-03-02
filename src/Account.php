@@ -12,12 +12,18 @@ namespace DotMailer\Api;
  * Class Account
  * @package DotMailer\Api
  *
+ *
+ * @property-read AddressBooks addressBooks
+ * @property-read Campaigns campaigns
+ * @property-read Contacts contacts
  */
-class Account extends Service {
+final class Account extends Service {
 
 	/** @var array */
 	private $serviceClasses = array(
-		'addressBooks' => 'AddressBooks'
+		'addressBooks' => 'AddressBooks',
+		'campaigns' => 'Campaigns',
+		'contacts' => 'Contacts',
 	);
 
 	/** @var array */
@@ -36,12 +42,18 @@ class Account extends Service {
 		return $this->execute('account-info');
 	}
 
-	private function getService($serviceName) {
+	/**
+	 * @param $serviceName
+	 * @return Service
+	 * @throws \Exception
+	 */
+	public function getService($serviceName) {
 		if (!isset($this->serviceInstances[$serviceName])) {
 			if (!isset($this->serviceClasses[$serviceName])) {
 				throw new \Exception(sprintf('Service not defined "%s"', $serviceName));
 			}
-			$this->serviceInstances[$serviceName] = new $this->serviceClasses[$serviceName]($this->restClient);
+			$className = __NAMESPACE__ . '\\' . $this->serviceClasses[$serviceName];
+			$this->serviceInstances[$serviceName] = new $className($this->restClient);
 		}
 		return $this->serviceInstances[$serviceName];
 	}
