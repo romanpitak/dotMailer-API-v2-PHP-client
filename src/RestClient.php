@@ -13,6 +13,9 @@ namespace DotMailer\Api;
 use RestClient\Client,
 	RestClient\Request;
 
+class RestClientException extends Exception {
+}
+
 /**
  * Class RestClient
  *
@@ -73,14 +76,14 @@ class RestClient implements IRestClient {
 			case 200:
 			case 201:
 			case 202:
-				return self::recursiveToArray(json_decode($response->getParsedResponse()));
+				return $response->getParsedResponse();
 				break;
 			case 204: // no content
 				return 'OK';
 			default:
 
 				// todo solve this maybe nicer?
-				throw new ServiceException($response->getParsedResponse(), $returnCode);
+				throw new RestClientException($response->getParsedResponse(), $returnCode);
 
 				$message = 'ERROR';
 				$response = $response->getParsedResponse();
@@ -90,7 +93,7 @@ class RestClient implements IRestClient {
 				} elseif ("" != $result->getError()) {
 					$message = $result->getError();
 				}
-				throw new ServiceException($message, $returnCode);
+				throw new RestClientException($message, $returnCode);
 		}
 	}
 
