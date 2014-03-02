@@ -8,7 +8,7 @@
 
 namespace DotMailer\Api;
 
-class Service {
+abstract class Service {
 
 	/** @var \DotMailer\Api\IRestClient */
 	private $restClient;
