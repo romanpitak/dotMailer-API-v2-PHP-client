@@ -8,7 +8,7 @@
 
 namespace DotMailer\Api;
 
-class AddressBooks extends Service {
+final class AddressBooks extends Service {
 
 	public function create($name, $public = false) {
 		$visibility = $public ? 'Public' : 'Private';
