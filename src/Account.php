@@ -13,7 +13,7 @@ namespace DotMailer\Api;
  *
  * Mix of a service provider and a service.
  * Creates and holds service instances (Campaigns, Contacts etc.).
- * Services are accessible via magic properties or method "getService".
+ * Services are accessible via magic properties or method "getContainer".
  * Provides methods that don't fit into any service ot fit into the service "Account".
  *
  * @property-read AddressBooks addressBooks
