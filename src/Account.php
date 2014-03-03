@@ -43,9 +43,9 @@ final class Account extends Service {
 		parent::__construct($restClient);
 	}
 
-	public function getInfo() {
-		return $this->execute('account-info');
-	}
+	/*
+	 * ========== Service Container ==========
+	 */
 
 	/**
 	 * @param $serviceName
@@ -65,6 +65,18 @@ final class Account extends Service {
 
 	public function __get($name) {
 		return $this->getService($name);
+	}
+
+	/*
+	 * ========== Service ==========
+	 */
+
+	public function getInfo() {
+		return $this->execute('account-info');
+	}
+
+	public function getServerTime() {
+		return $this->execute('server-time');
 	}
 
 }
