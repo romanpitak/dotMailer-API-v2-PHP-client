@@ -10,8 +10,11 @@ namespace DotMailer\Api;
 
 /**
  * Class Account
- * @package DotMailer\Api
  *
+ * Mix of a service provider and a service.
+ * Creates and holds service instances (Campaigns, Contacts etc.).
+ * Services are accessible via magic properties or method "getService".
+ * Provides methods that don't fit into any service ot fit into the service "Account".
  *
  * @property-read AddressBooks addressBooks
  * @property-read Campaigns campaigns
@@ -48,6 +51,8 @@ final class Account extends Service {
 	 */
 
 	/**
+	 * Get service instance.
+	 *
 	 * @param $serviceName
 	 * @return Service
 	 * @throws \Exception
@@ -71,10 +76,20 @@ final class Account extends Service {
 	 * ========== Service ==========
 	 */
 
+	/**
+	 * Gets a summary of information about the current status of the account.
+	 *
+	 * @return mixed
+	 */
 	public function getInfo() {
 		return $this->execute('account-info');
 	}
 
+	/**
+	 * Gets the UTC time as set on the server.
+	 *
+	 * @return mixed
+	 */
 	public function getServerTime() {
 		return $this->execute('server-time');
 	}
