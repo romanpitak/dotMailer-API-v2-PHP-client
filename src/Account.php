@@ -17,6 +17,8 @@ namespace DotMailer\Api;
  * @property-read Campaigns campaigns
  * @property-read Contacts contacts
  * @property-read DataFields dataFields
+ * @property-read Segments segments
+ *
  */
 final class Account extends Service {
 
@@ -25,7 +27,8 @@ final class Account extends Service {
 		'addressBooks' => 'AddressBooks',
 		'campaigns' => 'Campaigns',
 		'contacts' => 'Contacts',
-		'dataFields' => 'DataFields'
+		'dataFields' => 'DataFields',
+		'segments' => 'Segments'
 	);
 
 	/** @var array */
