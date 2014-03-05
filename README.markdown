@@ -4,14 +4,10 @@ dotMailer API v2 PHP client
 
 PHP client library for the dotMailer v2 (REST) API with **MULTIPLE ACCOUNTS SUPPORT!**
 
-Basic Usage
------------
+Single account usage
+--------------------
 
 	<?php
-
-		/*
-		 * ========== single account usage ==========
-		 */
 
 		$credentials = array(
 			'username' =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
@@ -22,10 +18,12 @@ Basic Usage
 
 		echo $account->getInfo();
 
+	?>
 
-		/*
-		 * ========== MULTIPLE ACCOUNTS usage ==========
-		 */
+Multiple accounts usage
+-----------------------
+
+	<?php
 
 		$credentials = array(
 			'master' => array(
@@ -53,7 +51,6 @@ Basic Usage
 		}
 
 	?>
-
 
 TODO
 ----
