@@ -35,7 +35,7 @@ final class DataFields extends Service {
 		$apiDataField->type = $type;
 		$apiDataField->visibility = $public ? 'Public' : 'Private';
 		$apiDataField->defaultValue = $defaultValue;
-		return $this->execute(array('data-fields', 'POST', $apiDataField->toJson()));
+		return new ApiDataField($this->execute(array('data-fields', 'POST', $apiDataField->toJson())));
 	}
 
 	/**
