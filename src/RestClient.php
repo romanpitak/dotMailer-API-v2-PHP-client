@@ -51,6 +51,7 @@ class RestClient implements IRestClient {
 
 		// get request
 		$callback = array($this->restClient, 'newRequest');
+		/** @var Request $request */
 		$request = call_user_func_array($callback, $param_arr);
 
 		// get response
