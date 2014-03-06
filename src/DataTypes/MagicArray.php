@@ -8,7 +8,7 @@
 
 namespace DotMailer\Api\DataTypes;
 
-abstract class MagicArray implements \ArrayAccess, IDataType {
+abstract class MagicArray implements \ArrayAccess, \Iterator, IDataType {
 
 	/** @var IDataType[] */
 	protected $data = array();
@@ -110,5 +110,31 @@ abstract class MagicArray implements \ArrayAccess, IDataType {
 		$this->checkOffset($offset);
 		unset($this->data[$offset]);
 	}
+
+
+	/*
+	 * ========== Iterator ==========
+	 */
+
+	public function current() {
+		return current($this->data);
+	}
+
+	public function key() {
+		return key($this->data);
+	}
+
+	public function next() {
+		next($this->data);
+	}
+
+	public function rewind() {
+		reset($this->data);
+	}
+
+	public function valid() {
+		return isset($this->data[$this->key()]);
+	}
+
 
 }
