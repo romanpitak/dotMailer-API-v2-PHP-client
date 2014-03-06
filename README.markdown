@@ -47,23 +47,12 @@ Multiple accounts usage
 		echo $container->master->contacts->getAll();
 
 		foreach ($container->group1 as $account) {
-			echo $account->dataFields->create('MY_DATA_FIELD');
+			echo $account->dataFields->create('MY_DATA_FIELD', 'String');
 		}
 
 	?>
 
 TODO
 ----
-solve output formats
 
-	strings
-	arrays
-	data classes
-
-add custom exceptions
-
-solve error codes in RestClient
-
-
-
-
+moar services, moar methods, moar power!

@@ -6,9 +6,9 @@
  * 
  */
  
-namespace DotMailer\Api;
+namespace DotMailer\Api\Rest;
 
-interface IRestClient {
+interface IClient {
 
 	/**
 	 * @param string $username API username (email)

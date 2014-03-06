@@ -17,4 +17,4 @@ final class ApiDependencyList extends JsonArray {
 		return 'ApiDependency';
 	}
 
-} 
+}

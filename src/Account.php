@@ -10,6 +10,7 @@ namespace DotMailer\Api;
 
 use DotMailer\Api\DataTypes\ApiAccount;
 use DotMailer\Api\DataTypes\XsDateTime;
+use DotMailer\Api\Rest\IClient;
 
 /**
  * Class Account
@@ -40,11 +41,11 @@ final class Account extends Service {
 	/** @var array */
 	private $serviceInstances = array();
 
-	/** @var \DotMailer\Api\IRestClient Needed for the creation of services */
+	/** @var IClient Needed for the creation of services */
 	private $restClient;
 
 
-	public function __construct(IRestClient $restClient) {
+	public function __construct(IClient $restClient) {
 		$this->restClient = $restClient;
 		parent::__construct($restClient);
 	}
