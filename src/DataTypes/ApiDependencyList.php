@@ -13,6 +13,8 @@ namespace DotMailer\Api\DataTypes;
 
 final class ApiDependencyList extends JsonArray {
 
-	protected $dataClass = 'ApiDependency';
+	function getDataClass() {
+		return 'ApiDependency';
+	}
 
 } 
