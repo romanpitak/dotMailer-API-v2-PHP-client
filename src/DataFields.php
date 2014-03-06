@@ -42,7 +42,7 @@ final class DataFields extends Service {
 	 * Deletes a data field within the account.
 	 *
 	 * @param string $name
-	 * @return ApiDependencyResult
+	 * @return ApiDependencyResult Delete result
 	 */
 	public function delete($name) {
 		return new ApiDependencyResult($this->execute(array(sprintf("data-fields/%s", $name), 'DELETE')));
