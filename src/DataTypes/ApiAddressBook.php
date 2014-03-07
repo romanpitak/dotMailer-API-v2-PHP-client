@@ -20,11 +20,13 @@ namespace DotMailer\Api\DataTypes;
  */
 final class ApiAddressBook extends JsonObject {
 
-	protected $keys = array(
-		'Id' => 'XsInt',
-		'Name' => 'XsString',
-		'Visibility' => 'ApiAddressBookVisibility',
-		'Contacts' => 'XsInt'
-	);
+	protected function getProperties() {
+		return array(
+			'Id' => 'XsInt',
+			'Name' => 'XsString',
+			'Visibility' => 'ApiAddressBookVisibility',
+			'Contacts' => 'XsInt'
+		);
+	}
 
 }

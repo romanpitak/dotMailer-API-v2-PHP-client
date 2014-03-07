@@ -18,9 +18,11 @@ namespace DotMailer\Api\DataTypes;
  */
 final class ApiAccount extends JsonObject {
 
-	protected $keys = array(
-		'Id' => 'XsInt',
-		'Properties' => 'ApiAccountPropertyList'
-	);
+	protected function getProperties() {
+		return array(
+			'Id' => 'XsInt',
+			'Properties' => 'ApiAccountPropertyList'
+		);
+	}
 
-} 
+}

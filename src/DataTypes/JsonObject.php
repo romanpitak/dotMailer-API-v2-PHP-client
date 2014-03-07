@@ -11,9 +11,6 @@ namespace DotMailer\Api\DataTypes;
 abstract class JsonObject extends MagicArray {
 
 	/** @var array */
-	protected $keys;
-
-	/** @var array */
 	protected $classes;
 
 	/** @var array */
@@ -21,7 +18,7 @@ abstract class JsonObject extends MagicArray {
 
 	function __construct($value = null) {
 
-		foreach ($this->keys as $key => $val) {
+		foreach ($this->getProperties() as $key => $val) {
 			$offset = $this->convertOffset($key);
 			$this->classes[$offset] = __NAMESPACE__ . '\\' . $val;
 			$this->outputKeys[$offset] = $key;
@@ -29,6 +26,17 @@ abstract class JsonObject extends MagicArray {
 
 		parent::__construct($value);
 	}
+
+	/*
+	 * ========== Abstract ==========
+	 */
+
+	/**
+	 * Returns array of magic properties in format "CamelCasePropertyName" => "DataClass"
+	 *
+	 * @return array
+	 */
+	abstract protected function getProperties();
 
 	/*
 	 * ========== MagicArray ==========

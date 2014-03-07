@@ -19,12 +19,14 @@ namespace DotMailer\Api\DataTypes;
  */
 class ApiDataField extends JsonObject {
 
-	protected $keys = array(
-		'Name' => 'XsString',
-		'Type' => 'ApiDataTypes',
-		'Visibility' => 'ApiDataFieldVisibility',
-		'DefaultValue' => 'Mixed'
-	);
+	protected function getProperties() {
+		return array(
+			'Name' => 'XsString',
+			'Type' => 'ApiDataTypes',
+			'Visibility' => 'ApiDataFieldVisibility',
+			'DefaultValue' => 'Mixed'
+		);
+	}
 
 }
 
