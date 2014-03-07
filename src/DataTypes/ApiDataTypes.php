@@ -16,14 +16,23 @@ class ApiDataTypes extends Enum {
 	const BOOLEAN = 'Boolean';
 	const NOT_AVAILABLE_IN_THIS_VERSION = 'NotAvailableInThisVersion';
 
-	protected $valueClass = 'XsString';
 
-	protected $possibleValues = array(
-		self::STRING,
-		self::NUMERIC,
-		self::DATE,
-		self::BOOLEAN,
-		self::NOT_AVAILABLE_IN_THIS_VERSION
-	);
+	/*
+	 * ========== Enum ==========
+	 */
+
+	protected function getDataClass() {
+		return 'XsString';
+	}
+
+	protected function getPossibleValues() {
+		return array(
+			self::STRING,
+			self::NUMERIC,
+			self::DATE,
+			self::BOOLEAN,
+			self::NOT_AVAILABLE_IN_THIS_VERSION
+		);
+	}
 
 }

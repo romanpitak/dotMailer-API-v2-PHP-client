@@ -10,22 +10,38 @@ namespace DotMailer\Api\DataTypes;
 
 abstract class Enum implements IDataType {
 
-	/** @var string */
-	protected $valueClass;
-
 	/** @var IDataType */
 	protected $value;
 
-	/** @var array  */
-	protected $possibleValues;
-
 	public function __construct($value) {
-		$valueClass = __NAMESPACE__ . '\\' . $this->valueClass;
+		$valueClass = __NAMESPACE__ . '\\' . $this->getDataClass();
 		$this->value = new $valueClass($value);
-		if (!in_array($this->value, $this->possibleValues, false)) {
+		if (!in_array($this->value, $this->getPossibleValues(), false)) {
 			throw new \Exception('Invalid value');
 		}
 	}
+
+	/*
+	 * ========== Abstract ==========
+	 */
+
+	/**
+	 * Get data class name
+	 *
+	 * @return string Data class name
+	 */
+	abstract protected function getDataClass();
+
+	/**
+	 * Return an array of possible enum values
+	 *
+	 * @return array
+	 */
+	abstract protected function getPossibleValues();
+
+	/*
+	 * ========== IDataTypes ==========
+	 */
 
 	public function __toString() {
 		return (string) $this->value;

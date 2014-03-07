@@ -11,18 +11,27 @@
 namespace DotMailer\Api\DataTypes;
 
 
-class ApiAddressBookVisibility {
+class ApiAddressBookVisibility extends Enum {
 
 	const VISIBLE = 'Private';
 	const HIDDEN = 'Public';
 	const NOT_AVAILABLE_IN_THIS_VERSION = 'NotAvailableInThisVersion';
 
-	protected $valueClass = 'XsString';
 
-	protected $possibleValues = array(
-		self::VISIBLE,
-		self::HIDDEN,
-		self::NOT_AVAILABLE_IN_THIS_VERSION
-	);
+	/*
+	 * ========== Enum ==========
+	 */
+
+	protected function getDataClass() {
+		return 'XsString';
+	}
+
+	protected function getPossibleValues() {
+		return array(
+			self::VISIBLE,
+			self::HIDDEN,
+			self::NOT_AVAILABLE_IN_THIS_VERSION
+		);
+	}
 
 }

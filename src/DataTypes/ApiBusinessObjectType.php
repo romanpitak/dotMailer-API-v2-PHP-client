@@ -25,21 +25,29 @@ final class ApiBusinessObjectType extends Enum {
 	const CAMPAIGN_TEMPLATE = 'CampaignTemplate';
 	const NOT_AVAILABLE_IN_THIS_VERSION = 'NotAvailableInThisVersion';
 
-	protected $valueClass = 'XsString';
 
-	protected $possibleValues = array(
-		self::CAMPAIGN,
-		self::SURVEY,
-		self::MICROSITE_PAGE,
-		self::DYNAMIC_CONTENT,
-		self::CONTACT_LABEL,
-		self::SURVEY_QUESTION,
-		self::ADDRESS_BOOK,
-		self::DYNAMIC_CONTENT_RULE,
-		self::CAMPAIGN_LINK,
-		self::CAMPAIGN_TEMPLATE,
-		self::NOT_AVAILABLE_IN_THIS_VERSION
-	);
+	/*
+	 * ========== Enum ==========
+	 */
 
+	protected function getDataClass() {
+		return 'XsString';
+	}
 
-} 
+	protected function getPossibleValues() {
+		return array(
+			self::CAMPAIGN,
+			self::SURVEY,
+			self::MICROSITE_PAGE,
+			self::DYNAMIC_CONTENT,
+			self::CONTACT_LABEL,
+			self::SURVEY_QUESTION,
+			self::ADDRESS_BOOK,
+			self::DYNAMIC_CONTENT_RULE,
+			self::CAMPAIGN_LINK,
+			self::CAMPAIGN_TEMPLATE,
+			self::NOT_AVAILABLE_IN_THIS_VERSION
+		);
+	}
+
+}
