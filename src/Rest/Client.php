@@ -8,26 +8,25 @@
  *
  */
 
-namespace DotMailer\Api;
+namespace DotMailer\Api\Rest;
 
-use RestClient\Client,
-	RestClient\Request;
+use RestClient\Request;
 
 /**
- * Class RestClient
+ * Class Rest
  *
- * Bridge class providing the IRestClient interface.
+ * Bridge class providing the IClient interface.
  *
  * @package DotMailer\Api
  */
-class RestClient implements IRestClient {
+class Client implements IClient {
 
 	/** @var \RestClient\Client */
 	private $restClient;
 
 	public function __construct($username, $password) {
 
-		$this->restClient = new Client(array(
+		$this->restClient = new \RestClient\Client(array(
 			Request::BASE_URL_KEY => 'https://api.dotmailer.com/v2',
 			Request::USERNAME_KEY => $username,
 			Request::PASSWORD_KEY => $password,
@@ -40,6 +39,19 @@ class RestClient implements IRestClient {
 			),
 		));
 
+	}
+
+	private static function getExceptionMessage($responseBodyString, $returnCode = null) {
+		switch ((int)$returnCode) {
+			case 404:
+				return 'NOT FOUND';
+			default:
+				$decoded = json_decode($responseBodyString, true);
+				if (is_array($decoded) && isset($decoded['message'])) {
+					return $decoded['message'];
+				}
+				return $responseBodyString;
+		}
 	}
 
 	public function execute($param_arr, $responses = array()) {
@@ -77,21 +89,15 @@ class RestClient implements IRestClient {
 				return $response->getParsedResponse();
 				break;
 			case 204: // no content
-				return 'OK';
+				return null;
+			case 400:
+				throw new BadRequestException(self::getExceptionMessage($response->getParsedResponse(), 400));
+			case 401:
+				throw new UnauthorizedException(self::getExceptionMessage($response->getParsedResponse(), 401));
+			case 404:
+				throw new NotFoundException(self::getExceptionMessage($response->getParsedResponse(), 404));
 			default:
-
-				// todo solve this maybe nicer?
-				throw new \Exception($response->getParsedResponse(), $returnCode);
-
-				$message = 'ERROR';
-				$response = $response->getParsedResponse();
-				// todo solve HTML response on 404
-				if (isset($response['message'])) {
-					$message = $response['message'];
-				} elseif ("" != $result->getError()) {
-					$message = $result->getError();
-				}
-				throw new \Exception($message, $returnCode);
+				throw new Exception(self::getExceptionMessage($response->getParsedResponse(), $returnCode));
 		}
 	}
 

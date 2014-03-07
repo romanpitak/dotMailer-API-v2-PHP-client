@@ -8,6 +8,10 @@
 
 namespace DotMailer\Api;
 
+use DotMailer\Api\DataTypes\ApiAccount;
+use DotMailer\Api\DataTypes\XsDateTime;
+use DotMailer\Api\Rest\IClient;
+
 /**
  * Class Account
  *
@@ -37,11 +41,11 @@ final class Account extends Service {
 	/** @var array */
 	private $serviceInstances = array();
 
-	/** @var \DotMailer\Api\IRestClient Needed for the creation of services */
+	/** @var IClient Needed for the creation of services */
 	private $restClient;
 
 
-	public function __construct(IRestClient $restClient) {
+	public function __construct(IClient $restClient) {
 		$this->restClient = $restClient;
 		parent::__construct($restClient);
 	}
@@ -55,12 +59,12 @@ final class Account extends Service {
 	 *
 	 * @param $serviceName
 	 * @return Service
-	 * @throws \Exception
+	 * @throws ServiceNotDefinedException
 	 */
 	public function getService($serviceName) {
 		if (!isset($this->serviceInstances[$serviceName])) {
 			if (!isset($this->serviceClasses[$serviceName])) {
-				throw new \Exception(sprintf('Service not defined "%s"', $serviceName));
+				throw new ServiceNotDefinedException($serviceName);
 			}
 			$className = __NAMESPACE__ . '\\' . $this->serviceClasses[$serviceName];
 			$this->serviceInstances[$serviceName] = new $className($this->restClient);
@@ -79,19 +83,19 @@ final class Account extends Service {
 	/**
 	 * Gets a summary of information about the current status of the account.
 	 *
-	 * @return mixed
+	 * @return ApiAccount
 	 */
 	public function getInfo() {
-		return $this->execute('account-info');
+		return new ApiAccount($this->execute('account-info'));
 	}
 
 	/**
 	 * Gets the UTC time as set on the server.
 	 *
-	 * @return mixed
+	 * @return XsDateTime
 	 */
 	public function getServerTime() {
-		return $this->execute('server-time');
+		return new XsDateTime($this->execute('server-time'));
 	}
 
 }

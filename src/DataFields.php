@@ -8,12 +8,17 @@
  
 namespace DotMailer\Api;
 
+use DotMailer\Api\DataTypes\ApiDataField;
+use DotMailer\Api\DataTypes\ApiDataFieldList;
+use DotMailer\Api\DataTypes\ApiDataTypes;
+use DotMailer\Api\DataTypes\ApiDependencyResult;
+
 final class DataFields extends Service {
 
-	const STRING_TYPE = 'String';
-	const NUMERIC_TYPE = 'Numeric';
-	const DATE_TYPE = 'Date';
-	const BOOLEAN_TYPE = 'Boolean';
+	const STRING_TYPE = ApiDataTypes::STRING;
+	const NUMERIC_TYPE = ApiDataTypes::NUMERIC;
+	const DATE_TYPE = ApiDataTypes::DATE;
+	const BOOLEAN_TYPE = ApiDataTypes::BOOLEAN;
 
 	/**
 	 * Creates a data field within the account.
@@ -22,39 +27,34 @@ final class DataFields extends Service {
 	 * @param string $type one of DataFields::[STRING_TYPE, NUMERIC_TYPE, DATE_TYPE, BOOLEAN_TYPE]
 	 * @param bool $public Visibility
 	 * @param null $defaultValue
-	 * @return mixed
+	 * @return ApiDataField
 	 */
 	public function create($name, $type, $public = false, $defaultValue = null) {
-		$visibility = $public ? 'Public' : 'Private';
-		$data = array(
-			'Name' => $name,
-			'Type' => $type,
-			'Visibility' => $visibility
-		);
-		if (!is_null($defaultValue)) {
-			$data['DefaultValue'] = $defaultValue;
-		}
-
-		return $this->execute(array('data-fields', 'POST', json_encode($data)));
+		$apiDataField = new ApiDataField();
+		$apiDataField->name = $name;
+		$apiDataField->type = $type;
+		$apiDataField->visibility = $public ? 'Public' : 'Private';
+		$apiDataField->defaultValue = $defaultValue;
+		return new ApiDataField($this->execute(array('data-fields', 'POST', $apiDataField->toJson())));
 	}
 
 	/**
 	 * Deletes a data field within the account.
 	 *
 	 * @param string $name
-	 * @return mixed
+	 * @return ApiDependencyResult Delete result
 	 */
 	public function delete($name) {
-		return $this->execute(array(sprintf("data-fields/%s", $name), 'DELETE'));
+		return new ApiDependencyResult($this->execute(array(sprintf("data-fields/%s", $name), 'DELETE')));
 	}
 
 	/**
 	 * Lists the data fields within the account.
 	 *
-	 * @return mixed
+	 * @return ApiDataFieldList
 	 */
 	public function getAll() {
-		return $this->execute('data-fields');
+		return new ApiDataFieldList($this->execute('data-fields'));
 	}
 
 }

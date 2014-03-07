@@ -8,12 +8,14 @@
 
 namespace DotMailer\Api;
 
+use DotMailer\Api\Rest\IClient;
+
 abstract class Service {
 
-	/** @var \DotMailer\Api\IRestClient */
+	/** @var IClient */
 	private $restClient;
 
-	public function __construct(IRestClient $restClient) {
+	public function __construct(IClient $restClient) {
 		$this->restClient = $restClient;
 	}
 

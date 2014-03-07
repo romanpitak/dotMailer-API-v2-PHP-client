@@ -54,16 +54,5 @@ Multiple accounts usage
 
 TODO
 ----
-solve output formats
 
-	strings
-	arrays
-	data classes
-
-add custom exceptions
-
-solve error codes in RestClient
-
-
-
-
+moar services, moar methods, moar power!

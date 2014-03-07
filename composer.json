@@ -21,7 +21,9 @@
         }
     ],
     "require": {
-        "romanpitak/php-rest-client": "*"
+        "php": ">=5.3.3",
+        "ext-json": "*",
+        "romanpitak/php-rest-client": "dev-master"
     },
     "autoload": {
         "psr-4": {

@@ -8,6 +8,8 @@
  
 namespace DotMailer\Api;
 
+use DotMailer\Api\Rest\Client;
+
 class Container implements \ArrayAccess, \Iterator {
 
 	const USERNAME = 'username';
@@ -38,7 +40,7 @@ class Container implements \ArrayAccess, \Iterator {
 	/**
 	 * Creates a new account.
 	 *
-	 * Creates a new RestClient based on the credentials and returns a new Account based on that RestClient instance.
+	 * Creates a new Rest based on the credentials and returns a new Account based on that Rest instance.
 	 *
 	 * @param array $credentials
 	 * @return Account
@@ -48,7 +50,7 @@ class Container implements \ArrayAccess, \Iterator {
 		if ((!isset($credentials[self::USERNAME])) || (!isset($credentials[self::PASSWORD]))) {
 			throw new \Exception('Invalid credentials');
 		}
-		$restClient = new RestClient($credentials[self::USERNAME], $credentials[self::PASSWORD]);
+		$restClient = new Client($credentials[self::USERNAME], $credentials[self::PASSWORD]);
 		return new Account($restClient);
 	}
 
