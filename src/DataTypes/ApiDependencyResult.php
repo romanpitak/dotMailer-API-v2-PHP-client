@@ -14,7 +14,7 @@ namespace DotMailer\Api\DataTypes;
  * @property ApiDependencyList dependencies
  * @property XsBoolean result
  */
-class ApiDependencyResult extends JsonObject {
+final class ApiDependencyResult extends JsonObject {
 
 	protected function getProperties() {
 		return array(

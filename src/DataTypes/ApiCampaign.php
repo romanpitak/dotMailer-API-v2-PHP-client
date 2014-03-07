@@ -26,7 +26,7 @@ namespace DotMailer\Api\DataTypes;
  * @property XsBoolean isSplitTest
  * @property ApiCampaignStatuses status
  */
-class ApiCampaign extends JsonObject {
+final class ApiCampaign extends JsonObject {
 
 	protected function getProperties() {
 		return array(

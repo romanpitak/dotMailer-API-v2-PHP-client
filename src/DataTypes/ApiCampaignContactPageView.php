@@ -18,7 +18,7 @@ namespace DotMailer\Api\DataTypes;
  * @property XsString url
  * @property XsDateTime dateViewed
  */
-class ApiCampaignContactPageView extends JsonObject {
+final class ApiCampaignContactPageView extends JsonObject {
 
 	protected function getProperties() {
 		return array(

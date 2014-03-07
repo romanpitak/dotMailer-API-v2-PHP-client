@@ -23,7 +23,7 @@ namespace DotMailer\Api\DataTypes;
  * @property XsDateTime dateReplied
  * @property ApiCampaignReplyTypes replyType
  */
-class ApiCampaignContactReply extends JsonObject {
+final class ApiCampaignContactReply extends JsonObject {
 
 	protected function getProperties() {
 		return array(

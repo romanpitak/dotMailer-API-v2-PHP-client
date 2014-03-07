@@ -11,7 +11,7 @@
 namespace DotMailer\Api\DataTypes;
 
 
-class ApiAddressBookList extends JsonArray {
+final class ApiAddressBookList extends JsonArray {
 
 	function getDataClass() {
 		return 'ApiAddressBook';

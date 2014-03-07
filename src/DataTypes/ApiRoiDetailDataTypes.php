@@ -11,7 +11,7 @@
 namespace DotMailer\Api\DataTypes;
 
 
-class ApiRoiDetailDataTypes extends Enum {
+final class ApiRoiDetailDataTypes extends Enum {
 
 	const STRING = 'String';
 	const NUMERIC = 'Numeric';

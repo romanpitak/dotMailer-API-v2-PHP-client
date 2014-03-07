@@ -11,7 +11,7 @@
 namespace DotMailer\Api\DataTypes;
 
 
-class ApiCampaignContactRoiDetailList extends JsonArray {
+final class ApiCampaignContactRoiDetailList extends JsonArray {
 
 	protected function getDataClass() {
 		return 'ApiCampaignContactRoiDetail';

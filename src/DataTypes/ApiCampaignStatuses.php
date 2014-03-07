@@ -11,7 +11,7 @@
 namespace DotMailer\Api\DataTypes;
 
 
-class ApiCampaignStatuses extends Enum {
+final class ApiCampaignStatuses extends Enum {
 	const UNSENT = 'Unsent';
 	const SENDING = 'WebMailForward';
 	const SENT = 'Webmail';

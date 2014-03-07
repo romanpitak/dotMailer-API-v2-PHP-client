@@ -17,7 +17,7 @@ namespace DotMailer\Api\DataTypes;
  * @property ApiDataFieldVisibility visibility
  * @property Mixed defaultValue
  */
-class ApiDataField extends JsonObject {
+final class ApiDataField extends JsonObject {
 
 	protected function getProperties() {
 		return array(

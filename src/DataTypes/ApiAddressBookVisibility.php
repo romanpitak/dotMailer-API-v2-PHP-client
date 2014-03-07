@@ -11,7 +11,7 @@
 namespace DotMailer\Api\DataTypes;
 
 
-class ApiAddressBookVisibility extends Enum {
+final class ApiAddressBookVisibility extends Enum {
 
 	const VISIBLE = 'Private';
 	const HIDDEN = 'Public';

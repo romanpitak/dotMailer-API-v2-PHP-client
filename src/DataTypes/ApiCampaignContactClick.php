@@ -22,7 +22,7 @@ namespace DotMailer\Api\DataTypes;
  * @property XsString keyword
  *
  */
-class ApiCampaignContactClick extends JsonObject {
+final class ApiCampaignContactClick extends JsonObject {
 
 	protected function getProperties() {
 		return array(

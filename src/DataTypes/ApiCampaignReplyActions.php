@@ -11,7 +11,7 @@
 namespace DotMailer\Api\DataTypes;
 
 
-class ApiCampaignReplyActions extends Enum {
+final class ApiCampaignReplyActions extends Enum {
 
 	const NOT_SET = 'Unset';
 	const WEB_MAIL_FORWARD = 'WebMailForward';

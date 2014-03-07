@@ -8,7 +8,7 @@
 
 namespace DotMailer\Api\DataTypes;
 
-class ApiDataFieldVisibility extends Enum {
+final class ApiDataFieldVisibility extends Enum {
 
 	const VISIBLE = 'Private';
 	const HIDDEN = 'Public';

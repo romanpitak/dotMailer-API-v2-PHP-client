@@ -21,7 +21,7 @@ namespace DotMailer\Api\DataTypes;
  * @property XsDateTime dateEntered
  *
  */
-class ApiCampaignContactRoiDetail extends JsonObject {
+final class ApiCampaignContactRoiDetail extends JsonObject {
 
 	protected function getProperties() {
 		return array(

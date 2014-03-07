@@ -17,7 +17,7 @@ namespace DotMailer\Api\DataTypes;
  * @property XsString email
  *
  */
-class ApiCampaignFromAddress extends JsonObject {
+final class ApiCampaignFromAddress extends JsonObject {
 
 	protected function getProperties() {
 		return array(

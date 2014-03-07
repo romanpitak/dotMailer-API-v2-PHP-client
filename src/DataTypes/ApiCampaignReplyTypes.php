@@ -11,7 +11,7 @@
 namespace DotMailer\Api\DataTypes;
 
 
-class ApiCampaignReplyTypes extends Enum {
+final class ApiCampaignReplyTypes extends Enum {
 
 	const REPLY = 'Reply';
 	const AUTO_REPLY = 'AutoReply';

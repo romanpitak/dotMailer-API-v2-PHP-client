@@ -30,7 +30,7 @@ namespace DotMailer\Api\DataTypes;
  * @property XsBoolean hardBounced
  *
  */
-class ApiCampaignContactSummary extends JsonObject {
+final class ApiCampaignContactSummary extends JsonObject {
 
 	protected function getProperties() {
 		return array(

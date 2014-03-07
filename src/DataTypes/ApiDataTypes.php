@@ -8,7 +8,7 @@
  
 namespace DotMailer\Api\DataTypes;
 
-class ApiDataTypes extends Enum {
+final class ApiDataTypes extends Enum {
 
 	const STRING = 'String';
 	const NUMERIC = 'Numeric';
