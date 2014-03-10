@@ -20,6 +20,7 @@ use DotMailer\Api\DataTypes\ApiCampaignSend;
 use DotMailer\Api\DataTypes\ApiCampaignSummary;
 use DotMailer\Api\DataTypes\ApiContact;
 use DotMailer\Api\DataTypes\ApiContactImport;
+use DotMailer\Api\DataTypes\ApiContactImportReport;
 use DotMailer\Api\DataTypes\ApiContactList;
 use DotMailer\Api\DataTypes\ApiContactResubscription;
 use DotMailer\Api\DataTypes\ApiContactSuppression;
@@ -28,6 +29,7 @@ use DotMailer\Api\DataTypes\ApiDocument;
 use DotMailer\Api\DataTypes\ApiDocumentList;
 use DotMailer\Api\DataTypes\ApiFileMedia;
 use DotMailer\Api\DataTypes\ApiResubscribeResult;
+use DotMailer\Api\DataTypes\ApiTransactionalDataList;
 use DotMailer\Api\DataTypes\Guid;
 use DotMailer\Api\DataTypes\Int32List;
 use DotMailer\Api\DataTypes\XsBoolean;
@@ -644,10 +646,192 @@ final class Resources {
 		return new ApiCampaignList($this->execute(sprintf("campaigns?select=%s&skip=%s", $select, $skip)));
 	}
 
+
 	/*
 	 * ========== contacts ==========
 	 */
 
+	/**
+	 * Creates a contact.
+	 *
+	 * @param ApiContact $apiContact
+	 * @return ApiContact
+	 */
+	public function PostContacts(ApiContact $apiContact) {
+		return new ApiContact($this->execute('contacts', 'POST', $apiContact->toJson()));
+	}
+
+	/**
+	 * Gets any address books that a contact is in.
+	 *
+	 * @param int|XsInt $contactId
+	 * @param int $select
+	 * @param int $skip
+	 * @return ApiAddressBookList
+	 */
+	public function GetContactAddressBooks($contactId, $select = 1000, $skip = 0) {
+		$url = sprintf("contacts/%s/address-books?select=%s&skip=%s", $contactId, $select, $skip);
+		return new ApiAddressBookList($this->execute($url));
+	}
+
+	/**
+	 * Gets a contact by email address.
+	 *
+	 * @param string|XsString $email
+	 * @return ApiContact
+	 */
+	public function GetContactByEmail($email) {
+		return new ApiContact($this->execute(sprintf("contacts/%s", $email)));
+	}
+
+	/**
+	 * Deletes all transactional data for a contact.
+	 *
+	 * @param string|XsString|int|XsInt $contactId
+	 * @param string|XsString $collectionName
+	 */
+	public function DeleteContactTransactionalData($contactId, $collectionName) {
+		$url = sprintf("contacts/%s/transactional-data/%s", $contactId, $collectionName);
+		$this->execute($url, 'DELETE');
+	}
+
+	/**
+	 * Gets a list of all transactional data for a contact (100 most recent only).
+	 *
+	 * @param string|XsString|int|XsInt $contactId
+	 * @param string|XsString $collectionName
+	 * @return ApiTransactionalDataList
+	 */
+	public function GetContactTransactionalDataByCollectionName($contactId, $collectionName) {
+		$url = sprintf("contacts/%s/transactional-data/%s", $contactId, $collectionName);
+		return new ApiTransactionalDataList($this->execute($url));
+	}
+
+	/**
+	 * Gets a contact by ID. Unsubscribed or suppressed contacts will not be retrieved.
+	 *
+	 * @param int|XsInt $contactId
+	 * @return ApiContact
+	 */
+	public function GetContactById($contactId) {
+		return new ApiContact($this->execute(sprintf("contacts/%s", $contactId)));
+	}
+
+	/**
+	 * Updates a contact.
+	 *
+	 * @param ApiContact $apiContact
+	 * @return ApiContact
+	 */
+	public function UpdateContact(ApiContact $apiContact) {
+		$url = sprintf("contacts/%s", $apiContact->id);
+		return new ApiContact($this->execute($url, 'PUT', $apiContact->toJson()));
+	}
+
+	/**
+	 * Deletes a contact.
+	 *
+	 * @param int|XsInt $contactId
+	 */
+	public function DeleteContact($contactId) {
+		$this->execute(sprintf("contacts/%s", $contactId), 'DELETE');
+	}
+
+	/**
+	 * Gets a list of created contacts after a specified date.
+	 *
+	 * @param string|XsDateTime $date
+	 * @param bool|XsBoolean $withFullData
+	 * @param int|XsInt $select
+	 * @param int|XsInt $skip
+	 * @return ApiContactList
+	 */
+	public function GetContactsCreatedSinceDate($date, $withFullData = false, $select = 1000, $skip = 0) {
+		$withFullData = $withFullData ? 'true' : 'false';
+		$url = sprintf("contacts/created-since/%s?withFullData=%s&select=%s&skip=%s", $date, $withFullData, $select, $skip);
+		return new ApiContactList($this->execute($url));
+	}
+
+	/**
+	 * Bulk creates, or bulk updates, contacts. Import format can either be CSV or Excel. Must include one column called "Email".
+	 *
+	 * Any other columns will attempt to map to your custom data fields. The ID of returned object can be used to query import progress.
+	 *
+	 * @param ApiFileMedia $apiFileMedia
+	 * @return ApiContactImport
+	 */
+	public function PostContactsImport(ApiFileMedia $apiFileMedia) {
+		return new ApiContactImport($this->execute('contacts/import', 'POST', $apiFileMedia->toJson()));
+	}
+
+	/**
+	 * Gets the import status of a previously started contact import.
+	 *
+	 * @param string|Guid $importId
+	 * @return ApiContactImport
+	 */
+	public function GetContactsImportByImportId($importId) {
+		$url = sprintf("contacts/import/%s", $importId);
+		return new ApiContactImport($this->execute($url));
+	}
+
+	/**
+	 * Gets a report with statistics about what was successfully imported, and what was unable to be imported.
+	 *
+	 * @param string|Guid $importId
+	 * @return ApiContactImportReport
+	 */
+	public function GetContactsImportReport($importId) {
+		$url = sprintf("contacts/import/%s/report", $importId);
+		return new ApiContactImportReport($this->execute($url));
+	}
+
+	// todo GetContactsImportReportFaults()
+
+	/**
+	 * Gets a list of modified contacts after a specified date.
+	 *
+	 * @param string|XsDateTime $date
+	 * @param bool|XsBoolean $withFullData
+	 * @param int|XsInt $select
+	 * @param int|XsInt $skip
+	 * @return ApiContactList
+	 */
+	public function GetContactsModifiedSinceDate($date, $withFullData = false, $select = 1000, $skip = 0) {
+		$withFullData = $withFullData ? 'true' : 'false';
+		$url = sprintf("contacts/modified-since/%s?withFullData=%s&select=%s&skip=%s", $date, $withFullData, $select, $skip);
+		return new ApiContactList($this->execute($url));
+	}
+
+	/**
+	 * Resubscribes a previously unsubscribed contact.
+	 *
+	 * @param ApiContactResubscription $apiContactResubscription
+	 * @return ApiResubscribeResult
+	 */
+	public function PostContactsResubscribe(ApiContactResubscription $apiContactResubscription) {
+		return new ApiResubscribeResult($this->execute('contacts/resubscribe', 'POST', $apiContactResubscription->toJson()));
+	}
+
+	/**
+	 * Gets a list of suppressed contacts after a given date along with the reason for suppression.
+	 *
+	 * @param string|XsDateTime $date
+	 * @param int|XsInt $select
+	 * @param int|XsInt $skip
+	 * @return ApiContactSuppressionList
+	 */
+	public function GetContactsSuppressedSinceDate($date, $select = 1000, $skip = 0) {
+		$url = sprintf("contacts/suppressed-since/%s?select=%s&skip=%s", $date, $select, $skip);
+		return new ApiContactSuppressionList($this->execute($url));
+	}
+
+
+	/*
+	 * ========== transactional-data ==========
+	 */
+
+	
 
 
 
