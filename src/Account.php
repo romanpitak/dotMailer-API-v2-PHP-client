@@ -20,12 +20,6 @@ use DotMailer\Api\Rest\IClient;
  * Services are accessible via magic properties or method "getContainer".
  * Provides methods that don't fit into any service ot fit into the service "Account".
  *
- * @property-read AddressBooks addressBooks
- * @property-read Campaigns campaigns
- * @property-read Contacts contacts
- * @property-read DataFields dataFields
- * @property-read Segments segments
- *
  */
 final class Account extends Service {
 

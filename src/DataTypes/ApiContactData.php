@@ -19,7 +19,7 @@ namespace DotMailer\Api\DataTypes;
  */
 final class ApiContactData extends JsonObject {
 
-	public function getProperties() {
+	protected function getProperties() {
 		return array(
 			'key' => 'XsString',
 			'Value' => 'Mixed'
