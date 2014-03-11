@@ -22,6 +22,7 @@ use DotMailer\Api\DataTypes\ApiCampaignContactRoiDetailList;
 use DotMailer\Api\DataTypes\ApiCampaignContactSocialBookmarkViewList;
 use DotMailer\Api\DataTypes\ApiCampaignContactSummary;
 use DotMailer\Api\DataTypes\ApiCampaignContactSummaryList;
+use DotMailer\Api\DataTypes\ApiCampaignFromAddressList;
 use DotMailer\Api\DataTypes\ApiCampaignList;
 use DotMailer\Api\DataTypes\ApiCampaignSend;
 use DotMailer\Api\DataTypes\ApiCampaignSummary;
@@ -32,10 +33,16 @@ use DotMailer\Api\DataTypes\ApiContactList;
 use DotMailer\Api\DataTypes\ApiContactResubscription;
 use DotMailer\Api\DataTypes\ApiContactSuppression;
 use DotMailer\Api\DataTypes\ApiContactSuppressionList;
+use DotMailer\Api\DataTypes\ApiDataField;
+use DotMailer\Api\DataTypes\ApiDataFieldList;
+use DotMailer\Api\DataTypes\ApiDependencyResult;
 use DotMailer\Api\DataTypes\ApiDocument;
 use DotMailer\Api\DataTypes\ApiDocumentList;
 use DotMailer\Api\DataTypes\ApiFileMedia;
 use DotMailer\Api\DataTypes\ApiResubscribeResult;
+use DotMailer\Api\DataTypes\ApiTransactionalData;
+use DotMailer\Api\DataTypes\ApiTransactionalDataImport;
+use DotMailer\Api\DataTypes\ApiTransactionalDataImportReport;
 use DotMailer\Api\DataTypes\ApiTransactionalDataList;
 use DotMailer\Api\DataTypes\Guid;
 use DotMailer\Api\DataTypes\Int32List;
@@ -381,11 +388,80 @@ final class Resources implements IResources {
 		return new ApiContactSuppressionList($this->execute($url));
 	}
 
+	public function PostContactsTransactionalData($collectionName, ApiTransactionalData $apiTransactionalData) {
+		$url = sprintf("contacts/transactional-data/%s", $collectionName);
+		return new ApiTransactionalData($this->execute($url, 'POST', $apiTransactionalData->toJson()));
+	}
+
+	public function DeleteContactsTransactionalData($collectionName, $key) {
+		$url = sprintf("contacts/transactional-data/%s/%s", $collectionName, $key);
+		$this->execute($url, 'DELETE');
+	}
+
+	public function GetContactsTransactionalDataByKey($collectionName, $key) {
+		$url = sprintf("contacts/transactional-data/%s/%s", $collectionName, $key);
+		return new ApiTransactionalData($this->execute($url));
+	}
+
+	public function PostContactsTransactionalDataImport($collectionName, ApiTransactionalDataList $apiTransactionalDataList) {
+		$url = sprintf("contacts/transactional-data/import/%s", $collectionName);
+		return new ApiTransactionalDataImport($this->execute($url, 'POST'));
+	}
+
+	public function GetContactsTransactionalDataImportByImportId($importId) {
+		$url = sprintf("contacts/transactional-data/import/%s", $importId);
+		return new ApiTransactionalDataImport($this->execute($url));
+	}
+
+	public function GetContactsTransactionalDataImportReport($importId) {
+		$url = sprintf("contacts/transactional-data/import/%s/report", $importId);
+		return new ApiTransactionalDataImportReport($this->execute($url));
+	}
+
+	public function PostContactsUnsubscribe(ApiContact $apiContact) {
+		return new ApiContactSuppression($this->execute('contacts/unsubscribe', 'POST', $apiContact->toJson()));
+	}
+
+	public function GetContactsUnsubscribedSinceDate($data, $select = 1000, $skip = 0) {
+		$url = sprintf("contacts/unsubscribed-since/%s?select=%s&skip=%s", $data, $select, $skip);
+		return new ApiContactSuppressionList($this->execute($url));
+	}
+
+	public function GetContacts($withFullData = false, $select = 1000, $skip = 0) {
+		$withFullData = $withFullData ? 'true' : 'false';
+		$url = sprintf("contacts?withFullData=%s&select=%s&skip=%s", $withFullData, $select, $skip);
+		return new ApiContactList($this->execute($url));
+	}
+
 
 	/*
-	 * ========== transactional-data ==========
+	 * ========== custom-from-addresses ==========
 	 */
 
+	public function GetCustomFromAddresses($select = 1000, $skip = 0) {
+		$url = sprintf("custom-from-addresses?select=%s&skip=%s", $select, $skip);
+		return new ApiCampaignFromAddressList($this->execute($url));
+	}
+
+
+	/*
+	 * ========== data-fields ==========
+	 */
+
+	public function PostDataFields(ApiDataField $apiDataField) {
+		$this->execute('data-fields', 'POST', $apiDataField->toJson());
+	}
+
+	public function GetDataFields() {
+		return new ApiDataFieldList($this->execute('data-fields'));
+	}
+
+	public function DeleteDataField($name) {
+		$url = sprintf("data-fields/%s", $name);
+		return new ApiDependencyResult($this->execute($url, 'DELETE'));
+	}
+
+	
 
 }
 

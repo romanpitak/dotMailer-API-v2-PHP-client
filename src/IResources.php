@@ -23,6 +23,7 @@ use DotMailer\Api\DataTypes\ApiCampaignContactRoiDetailList;
 use DotMailer\Api\DataTypes\ApiCampaignContactSocialBookmarkViewList;
 use DotMailer\Api\DataTypes\ApiCampaignContactSummary;
 use DotMailer\Api\DataTypes\ApiCampaignContactSummaryList;
+use DotMailer\Api\DataTypes\ApiCampaignFromAddressList;
 use DotMailer\Api\DataTypes\ApiCampaignList;
 use DotMailer\Api\DataTypes\ApiCampaignSend;
 use DotMailer\Api\DataTypes\ApiCampaignSummary;
@@ -33,10 +34,16 @@ use DotMailer\Api\DataTypes\ApiContactList;
 use DotMailer\Api\DataTypes\ApiContactResubscription;
 use DotMailer\Api\DataTypes\ApiContactSuppression;
 use DotMailer\Api\DataTypes\ApiContactSuppressionList;
+use DotMailer\Api\DataTypes\ApiDataField;
+use DotMailer\Api\DataTypes\ApiDataFieldList;
+use DotMailer\Api\DataTypes\ApiDependencyResult;
 use DotMailer\Api\DataTypes\ApiDocument;
 use DotMailer\Api\DataTypes\ApiDocumentList;
 use DotMailer\Api\DataTypes\ApiFileMedia;
 use DotMailer\Api\DataTypes\ApiResubscribeResult;
+use DotMailer\Api\DataTypes\ApiTransactionalData;
+use DotMailer\Api\DataTypes\ApiTransactionalDataImport;
+use DotMailer\Api\DataTypes\ApiTransactionalDataImportReport;
 use DotMailer\Api\DataTypes\ApiTransactionalDataList;
 use DotMailer\Api\DataTypes\Guid;
 use DotMailer\Api\DataTypes\Int32List;
@@ -637,7 +644,128 @@ interface IResources {
 	 */
 	public function GetContactsSuppressedSinceDate($date, $select = 1000, $skip = 0);
 
+	/**
+	 * Adds a single piece of transactional data to a contact.
+	 *
+	 * /contacts/transactional-data/{collectionName}
+	 * todo maybe look at contacts/transactional-data/{collectionName}/{key}
+	 *
+	 * @param string|XsString $collectionName
+	 * @param ApiTransactionalData $apiTransactionalData
+	 * @return ApiTransactionalData
+	 */
+	public function PostContactsTransactionalData($collectionName, ApiTransactionalData $apiTransactionalData);
 
+	/**
+	 * Deletes a piece of transactional data by key.
+	 *
+	 * @param string|XsString $collectionName
+	 * @param string|XsString $key
+	 */
+	public function DeleteContactsTransactionalData($collectionName, $key);
+
+	/**
+	 * Gets a piece of transactional data by key.
+	 *
+	 * @param string|XsString $collectionName
+	 * @param string|XsString $key
+	 * @return ApiTransactionalData
+	 */
+	public function GetContactsTransactionalDataByKey($collectionName, $key);
+
+	/**
+	 * Adds multiple pieces of transactional data to contacts asynchronously, returning an identifier that can be used to check for import progress.
+	 *
+	 * @param string|XsString $collectionName
+	 * @param ApiTransactionalDataList $apiTransactionalDataList
+	 * @return ApiTransactionalDataImport
+	 */
+	public function PostContactsTransactionalDataImport($collectionName, ApiTransactionalDataList $apiTransactionalDataList);
+
+	/**
+	 * Gets the import status of a previously started transactional import.
+	 *
+	 * @param string|Guid $importId
+	 * @return ApiTransactionalDataImport
+	 */
+	public function GetContactsTransactionalDataImportByImportId($importId);
+
+	/**
+	 * Gets a report with statistics about what was successfully imported, and what was unable to be imported.
+	 *
+	 * @param string|Guid $importId
+	 * @return ApiTransactionalDataImportReport
+	 */
+	public function GetContactsTransactionalDataImportReport($importId);
+
+	/**
+	 * Unsubscribes contact from account.
+	 *
+	 * @param ApiContact $apiContact
+	 * @return ApiContactSuppression
+	 */
+	public function PostContactsUnsubscribe(ApiContact $apiContact);
+
+	/**
+	 * Gets a list of unsubscribed contacts who unsubscribed after a given date.
+	 *
+	 * @param string|XsDateTime $data
+	 * @param int|XsInt $select
+	 * @param int|XsInt $skip
+	 * @return ApiContactSuppressionList
+	 */
+	public function GetContactsUnsubscribedSinceDate($data, $select = 1000, $skip = 0);
+
+	/**
+	 * Gets a list of all contacts in the account
+	 *
+	 * @param bool|XsBoolean $withFullData
+	 * @param int|XsInt $select
+	 * @param int|XsInt $skip
+	 * @return ApiContactList
+	 */
+	public function GetContacts($withFullData = false, $select = 1000, $skip = 0);
+
+
+	/*
+	 * ========== custom-from-addresses ==========
+	 */
+
+	/**
+	 * Gets all custom from addresses which can be used in a campaign.
+	 *
+	 * @param int|XsInt $select
+	 * @param int|XsInt $skip
+	 * @return ApiCampaignFromAddressList
+	 */
+	public function GetCustomFromAddresses($select = 1000, $skip = 0);
+
+
+	/*
+	 * ========== data-fields ==========
+	 */
+
+	/**
+	 * Creates a data field within the account.
+	 *
+	 * @param ApiDataField $apiDataField
+	 */
+	public function PostDataFields(ApiDataField $apiDataField);
+
+	/**
+	 * Lists the data fields within the account.
+	 *
+	 * @return ApiDataFieldList
+	 */
+	public function GetDataFields();
+
+	/**
+	 * Deletes a data field within the account.
+	 *
+	 * @param string|XsString $name
+	 * @return ApiDependencyResult
+	 */
+	public function DeleteDataField($name);
 
 
 

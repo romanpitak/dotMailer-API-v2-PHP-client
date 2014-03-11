@@ -56,3 +56,5 @@ TODO
 ----
 
 moar services, moar methods, moar power!
+
+GetContactsImportReportFaults()
