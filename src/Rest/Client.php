@@ -96,6 +96,8 @@ class Client implements IClient {
 				throw new UnauthorizedException(self::getExceptionMessage($response->getParsedResponse(), 401));
 			case 404:
 				throw new NotFoundException(self::getExceptionMessage($response->getParsedResponse(), 404));
+			case 409:
+				throw new ConflictException(self::getExceptionMessage($response->getParsedResponse(), 409));
 			default:
 				throw new Exception(self::getExceptionMessage($response->getParsedResponse(), $returnCode));
 		}
