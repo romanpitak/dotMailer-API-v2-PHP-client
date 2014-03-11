@@ -382,7 +382,10 @@ final class Resources implements IResources {
 		return new ApiContactImportReport($this->execute($url));
 	}
 
-	// todo GetContactsImportReportFaults()
+	public function GetContactsImportReportFaults(Guid $importId) {
+		$url = sprintf("contacts/import/%s/report-faults", $importId);
+		return new XsString($this->execute($url));
+	}
 
 	public function GetContactsModifiedSinceDate($date, $withFullData = false, $select = 1000, $skip = 0) {
 		$withFullData = $withFullData ? 'true' : 'false';

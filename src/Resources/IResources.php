@@ -61,7 +61,10 @@ use DotMailer\Api\DataTypes\XsDateTime;
 use DotMailer\Api\DataTypes\XsInt;
 use DotMailer\Api\DataTypes\XsString;
 
-
+/**
+ * Interface IResources
+ *
+ */
 interface IResources {
 
 	/*
@@ -621,7 +624,16 @@ interface IResources {
 	 */
 	public function GetContactsImportReport($importId);
 
-	// todo GetContactsImportReportFaults()
+	/**
+	 * Gets all records that were not successfully imported.
+	 *
+	 * The data are returned in CSV file, which is UTF-8 encoded.
+	 * This data will only be available for approximately one week after import.
+	 *
+	 * @param Guid $importId
+	 * @return XsString
+	 */
+	public function GetContactsImportReportFaults(Guid $importId);
 
 	/**
 	 * Gets a list of modified contacts after a specified date.
