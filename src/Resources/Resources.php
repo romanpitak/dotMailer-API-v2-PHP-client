@@ -7,7 +7,7 @@
  */
 
 
-namespace DotMailer\Api;
+namespace DotMailer\Api\Resources;
 
 
 use DotMailer\Api\DataTypes\ApiAccount;
@@ -37,14 +37,25 @@ use DotMailer\Api\DataTypes\ApiDataField;
 use DotMailer\Api\DataTypes\ApiDataFieldList;
 use DotMailer\Api\DataTypes\ApiDependencyResult;
 use DotMailer\Api\DataTypes\ApiDocument;
+use DotMailer\Api\DataTypes\ApiDocumentFolder;
+use DotMailer\Api\DataTypes\ApiDocumentFolderList;
 use DotMailer\Api\DataTypes\ApiDocumentList;
 use DotMailer\Api\DataTypes\ApiFileMedia;
+use DotMailer\Api\DataTypes\ApiImage;
+use DotMailer\Api\DataTypes\ApiImageFolder;
+use DotMailer\Api\DataTypes\ApiImageFolderList;
 use DotMailer\Api\DataTypes\ApiResubscribeResult;
+use DotMailer\Api\DataTypes\ApiSegmentList;
+use DotMailer\Api\DataTypes\ApiSegmentRefresh;
+use DotMailer\Api\DataTypes\ApiSms;
+use DotMailer\Api\DataTypes\ApiTemplate;
+use DotMailer\Api\DataTypes\ApiTemplateList;
 use DotMailer\Api\DataTypes\ApiTransactionalData;
 use DotMailer\Api\DataTypes\ApiTransactionalDataImport;
 use DotMailer\Api\DataTypes\ApiTransactionalDataImportReport;
 use DotMailer\Api\DataTypes\ApiTransactionalDataList;
 use DotMailer\Api\DataTypes\Guid;
+use DotMailer\Api\DataTypes\IApiTemplate;
 use DotMailer\Api\DataTypes\Int32List;
 use DotMailer\Api\DataTypes\XsBoolean;
 use DotMailer\Api\DataTypes\XsDateTime;
@@ -461,7 +472,109 @@ final class Resources implements IResources {
 		return new ApiDependencyResult($this->execute($url, 'DELETE'));
 	}
 
-	
+	/*
+	 * ========== document-folders ==========
+	 */
+
+	public function GetDocumentFolders() {
+		return new ApiDocumentFolderList($this->execute('document-folders'));
+	}
+
+	public function PostDocumentFolder($folderId, ApiDocumentFolder $apiDocumentFolder) {
+		$url = sprintf("document-folders/%s", $folderId);
+		return new ApiDocumentFolder($this->execute($url, 'POST', $apiDocumentFolder->toJson()));
+	}
+
+	public function GetDocumentFolderDocuments($folderId) {
+		$url = sprintf("document-folders/%s/documents", $folderId);
+		return new ApiDocumentList($this->execute($url));
+	}
+
+	public function PostDocumentFolderDocuments($folderId, ApiFileMedia $apiFileMedia) {
+		$url = sprintf("document-folders/%s/documents", $folderId);
+		return new ApiDocument($this->execute($url, 'POST', $apiFileMedia->toJson()));
+	}
+
+	/*
+	 * ========== image-folders ==========
+	 */
+
+	public function GetImageFolders() {
+		return new ApiImageFolderList($this->execute('image-folders'));
+	}
+
+	public function PostImageFolderImages(XsInt $folderId, ApiFileMedia $apiFileMedia) {
+		$url = sprintf("image-folders/%s/images", $folderId);
+		return new ApiImage($this->execute($url, 'POST', $apiFileMedia->toJson()));
+	}
+
+	public function GetImageFolderById(XsInt $folderId) {
+		$url = sprintf("image-folders/%s", $folderId);
+		return new ApiImageFolder($this->execute($url));
+	}
+
+	public function PostImageFolder(XsInt $folderId, ApiImageFolder $apiImageFolder) {
+		$url = sprintf("image-folders/%s", $folderId);
+		return new ApiImageFolder($this->execute($url, 'POST', $apiImageFolder->toJson()));
+	}
+
+	/*
+	 * ========== segments ==========
+	 */
+
+	public function PostSegmentsRefresh(XsInt $segmentId) {
+		$url = sprintf("segments/refresh/%s", $segmentId);
+		return new ApiSegmentRefresh($this->execute($url, 'POST'));
+	}
+
+	public function GetSegmentsRefreshById(XsInt $segmentId) {
+		$url = sprintf("segments/refresh/%s", $segmentId);
+		return new ApiSegmentRefresh($this->execute($url));
+	}
+
+	public function GetSegments($select = 1000, $skip = 0) {
+		$url = sprintf("segments?select=%s&skip=%s", $select, $skip);
+		return new ApiSegmentList($this->execute($url));
+	}
+
+	/*
+	 * ========== server-time ==========
+	 */
+
+	public function GetServerTime() {
+		return new XsDateTime($this->execute('server-time'));
+	}
+
+	/*
+	 * ========== sms-messages ==========
+	 */
+
+	public function PostSmsMessagesSendTo(XsString $telephoneNumber, ApiSms $apiSms) {
+		$this->execute(sprintf("/sms-messages/send-to/%s", $telephoneNumber), 'POST', $apiSms->toJson());
+	}
+
+	/*
+	 * ========== templates ==========
+	 */
+
+	public function PostTemplates(IApiTemplate $apiTemplate) {
+		return new ApiTemplate($this->execute('templates', 'POST', $apiTemplate->toJson()));
+	}
+
+	public function GetTemplateById(XsInt $templateId) {
+		$url = sprintf("templates/%s", $templateId);
+		return new ApiTemplate($this->execute($url));
+	}
+
+	public function UpdateTemplate(IApiTemplate $apiTemplate) {
+		$url = sprintf("templates/%s", $apiTemplate->id);
+		return new ApiTemplate($this->execute($url, 'PUT', $apiTemplate->toJson()));
+	}
+
+	public function GetTemplates($select = 1000, $skip = 0) {
+		$url = sprintf("templates?select=%s&skip=%s", $select, $skip);
+		return new ApiTemplateList($this->execute($url));
+	}
 
 }
 

@@ -6,9 +6,8 @@
  * 
  */
  
- 
 
-namespace DotMailer\Api;
+namespace DotMailer\Api\Resources;
 
 
 use DotMailer\Api\DataTypes\ApiAccount;
@@ -38,20 +37,29 @@ use DotMailer\Api\DataTypes\ApiDataField;
 use DotMailer\Api\DataTypes\ApiDataFieldList;
 use DotMailer\Api\DataTypes\ApiDependencyResult;
 use DotMailer\Api\DataTypes\ApiDocument;
+use DotMailer\Api\DataTypes\ApiDocumentFolder;
+use DotMailer\Api\DataTypes\ApiDocumentFolderList;
 use DotMailer\Api\DataTypes\ApiDocumentList;
 use DotMailer\Api\DataTypes\ApiFileMedia;
+use DotMailer\Api\DataTypes\ApiImage;
+use DotMailer\Api\DataTypes\ApiImageFolder;
+use DotMailer\Api\DataTypes\ApiImageFolderList;
 use DotMailer\Api\DataTypes\ApiResubscribeResult;
+use DotMailer\Api\DataTypes\ApiSegmentList;
+use DotMailer\Api\DataTypes\ApiSegmentRefresh;
+use DotMailer\Api\DataTypes\ApiSms;
+use DotMailer\Api\DataTypes\ApiTemplateList;
 use DotMailer\Api\DataTypes\ApiTransactionalData;
 use DotMailer\Api\DataTypes\ApiTransactionalDataImport;
 use DotMailer\Api\DataTypes\ApiTransactionalDataImportReport;
 use DotMailer\Api\DataTypes\ApiTransactionalDataList;
 use DotMailer\Api\DataTypes\Guid;
+use DotMailer\Api\DataTypes\IApiTemplate;
 use DotMailer\Api\DataTypes\Int32List;
 use DotMailer\Api\DataTypes\XsBoolean;
 use DotMailer\Api\DataTypes\XsDateTime;
 use DotMailer\Api\DataTypes\XsInt;
 use DotMailer\Api\DataTypes\XsString;
-use DotMailer\Api\Rest\IClient;
 
 
 interface IResources {
@@ -768,7 +776,167 @@ interface IResources {
 	public function DeleteDataField($name);
 
 
+	/*
+	 * ========== document-folders ==========
+	 */
 
+	/**
+	 * Fetches the document folder tree structure.
+	 *
+	 * @return ApiDocumentFolderList
+	 */
+	public function GetDocumentFolders();
 
+	/**
+	 * Creates a new document folder.
+	 *
+	 * @param int|XsInt $folderId
+	 * @param ApiDocumentFolder $apiDocumentFolder
+	 * @return ApiDocumentFolder
+	 */
+	public function PostDocumentFolder($folderId, ApiDocumentFolder $apiDocumentFolder);
 
-} 
+	/**
+	 * Gets all uploaded documents.
+	 *
+	 * @param int|XsInt $folderId
+	 * @return ApiDocumentList
+	 */
+	public function GetDocumentFolderDocuments($folderId);
+
+	/**
+	 * Upload a document to the specified folder.
+	 *
+	 * @param int|XsInt $folderId
+	 * @param ApiFileMedia $apiFileMedia
+	 * @return ApiDocument
+	 */
+	public function PostDocumentFolderDocuments($folderId, ApiFileMedia $apiFileMedia);
+
+	/*
+	 * ========== image-folders ==========
+	 */
+
+	/**
+	 * Fetches the campaign image folder tree structure.
+	 *
+	 * @return ApiImageFolderList
+	 */
+	public function GetImageFolders();
+
+	/**
+	 * Uploads a new campaign image to the specified folder.
+	 *
+	 * @param XsInt $folderId
+	 * @param ApiFileMedia $apiFileMedia
+	 * @return ApiImage
+	 */
+	public function PostImageFolderImages(XsInt $folderId, ApiFileMedia $apiFileMedia);
+
+	/**
+	 * Gets an image folder by id.
+	 *
+	 * @param XsInt $folderId
+	 * @return ApiImageFolder
+	 */
+	public function GetImageFolderById(XsInt $folderId);
+
+	/**
+	 * Creates a new campaign image folder.
+	 *
+	 * @param XsInt $folderId
+	 * @param ApiImageFolder $apiImageFolder
+	 * @return ApiImageFolder
+	 */
+	public function PostImageFolder(XsInt $folderId, ApiImageFolder $apiImageFolder);
+
+	/*
+	 * ========== segments ==========
+	 */
+
+	/**
+	 * Refreshes a segment by ID.
+	 *
+	 * @param XsInt $segmentId
+	 * @return ApiSegmentRefresh
+	 */
+	public function PostSegmentsRefresh(XsInt $segmentId);
+
+	/**
+	 * Gets the refresh progress for a segment.
+	 *
+	 * @param XsInt $segmentId
+	 * @return ApiSegmentRefresh
+	 */
+	public function GetSegmentsRefreshById(XsInt $segmentId);
+
+	/**
+	 * Gets all segments.
+	 *
+	 * @param int $select
+	 * @param int $skip
+	 * @return ApiSegmentList
+	 */
+	public function GetSegments($select = 1000, $skip = 0);
+
+	/*
+	 * ========== server-time ==========
+	 */
+
+	/**
+	 * Gets the UTC time as set on the server.
+	 *
+	 * @return XsDateTime
+	 */
+	public function GetServerTime();
+
+	/*
+	 * ========== sms-messages ==========
+	 */
+
+	/**
+	 * Send a single SMS message.
+	 *
+	 * @param XsString $telephoneNumber
+	 * @param ApiSms $apiSms
+	 */
+	public function PostSmsMessagesSendTo(XsString $telephoneNumber, ApiSms $apiSms);
+
+	/*
+	 * ========== templates ==========
+	 */
+
+	/**
+	 * Creates a template.
+	 *
+	 * @param IApiTemplate $apiTemplate
+	 * @return IApiTemplate
+	 */
+	public function PostTemplates(IApiTemplate $apiTemplate);
+
+	/**
+	 * Gets a template by ID.
+	 *
+	 * @param XsInt $templateId
+	 * @return IApiTemplate
+	 */
+	public function GetTemplateById(XsInt $templateId);
+
+	/**
+	 * Updates a template.
+	 *
+	 * @param IApiTemplate $apiTemplate
+	 * @return IApiTemplate
+	 */
+	public function UpdateTemplate(IApiTemplate $apiTemplate);
+
+	/**
+	 * Gets list of all templates.
+	 *
+	 * @param int $select
+	 * @param int $skip
+	 * @return ApiTemplateList
+	 */
+	public function GetTemplates($select = 1000, $skip = 0);
+
+}
