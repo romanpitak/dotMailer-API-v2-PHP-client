@@ -2,7 +2,11 @@ dotMailer API v2 PHP client
 ===============
 (c) 2014 Roman Piták, http://pitak.net <roman@pitak.net>
 
-PHP client library for the dotMailer v2 (REST) API with **MULTIPLE ACCOUNTS SUPPORT!**
+PHP client library for the dotMailer v2 (REST) API with **multiple accounts support!**
+
+**Full implementation** according to the http://api.dotmailer.com/v2/help/wadl
+
+Type hinting support for objects and resources (not yet for arrays).
 
 Single account usage
 --------------------
@@ -14,9 +18,9 @@ Single account usage
 			'password' => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
 		);
 
-		$account = Container::newAccount($credentials);
+		$resources = Container::newResources($credentials);
 
-		echo $account->getInfo();
+		echo $resources->GetAccountInfo();
 
 	?>
 
@@ -44,10 +48,20 @@ Multiple accounts usage
 
 		$container = Container::newContainer($credentials);
 
-		echo $container->master->contacts->getAll();
+		echo $container->getResources('master')->GetSegments();
 
-		foreach ($container->group1 as $account) {
-			echo $account->dataFields->create('MY_DATA_FIELD', 'String');
+		$dataField = new ApiDataField();
+		$dataField->name = 'MY_DATA_FIELD';
+		$dataField->type = ApiDataTypes::STRING;
+		$dataField->visibility = ApiDataFieldVisibility::HIDDEN;
+
+		foreach ($container->group1 as $resources) {
+			try {
+				$resources->PostDataFields($dataField);
+				echo 'OK';
+			} catch (Exception $e) {
+				echo 'Already exists';
+			}
 		}
 
 	?>
@@ -55,6 +69,8 @@ Multiple accounts usage
 TODO
 ----
 
-moar services, moar methods, moar power!
+Refactor Simple data types
 
-GetContactsImportReportFaults()
+Split IResources into sub-interfaces
+
+Interfaces for data types
