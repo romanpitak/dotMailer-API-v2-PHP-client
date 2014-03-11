@@ -8,12 +8,11 @@
  
 namespace DotMailer\Api;
 
+use DotMailer\Api\Resources\IResources;
+use DotMailer\Api\Resources\Resources;
 use DotMailer\Api\Rest\Client;
 
-class Container implements \ArrayAccess, \Iterator {
-
-	const USERNAME = 'username';
-	const PASSWORD = 'password';
+final class Container implements IContainer {
 
 	/** @var array */
 	private $credentials = array();
@@ -38,55 +37,71 @@ class Container implements \ArrayAccess, \Iterator {
 	}
 
 	/**
-	 * Creates a new account.
+	 * Creates a new Resources object
 	 *
-	 * Creates a new Rest based on the credentials and returns a new Account based on that Rest instance.
+	 * Creates a new Rest Client based on the credentials
+	 * and returns a new Resources instance based on that Rest Client instance.
 	 *
 	 * @param array $credentials
-	 * @return Account
-	 * @throws \Exception
+	 * @return IResources
+	 * @throws Exception
 	 */
-	public static function newAccount($credentials) {
+	public static function newResources($credentials) {
 		if ((!isset($credentials[self::USERNAME])) || (!isset($credentials[self::PASSWORD]))) {
-			throw new \Exception('Invalid credentials');
+			throw new Exception('Invalid credentials');
 		}
 		$restClient = new Client($credentials[self::USERNAME], $credentials[self::PASSWORD]);
-		return new Account($restClient);
+		return new Resources($restClient);
 	}
 
 	/**
 	 * @param string $name
 	 * @return array of credentials
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	private function getCredentials($name) {
 		if (!isset($this->credentials[$name])) {
-			throw new \Exception('Credentials "' . $name . '" not found.');
+			throw new Exception('Credentials "' . $name . '" not found.');
 		}
 		return $this->credentials[$name];
 	}
 
 	/**
-	 * @param $name
-	 * @return Account|Container
-	 * @throws \Exception
+	 * @param string $name
+	 * @return IResources|IContainer
 	 */
-	private function createContainer($name) {
-		$credentials = $this->getCredentials($name);
+	private function getAnything($name) {
 		try {
-			return self::newAccount($credentials);
-		} catch (\Exception $e) {
-			return self::newContainer($credentials);
+			return $this->getResources($name);
+		} catch (Exception $e) {
+			return $this->getContainer($name);
 		}
 	}
 
-	/**
-	 * @param string $name
-	 * @return Account|Container
+	/*
+	 * ========== IContainer ==========
 	 */
-	private function getContainer($name) {
+
+	public function getResources($name) {
 		if (!isset($this->containers[$name])) {
-			$this->containers[$name] = $this->createContainer($name);
+			$this->containers[$name] = self::newResources($this->getCredentials($name));
+		}
+		/** @var IResources $resources */
+		$resources = $this->containers[$name];
+		if (!($resources instanceof IResources)) {
+			throw new Exception();
+		}
+		return $resources;
+	}
+
+	public function getContainer($name) {
+		if (!isset($this->containers[$name])) {
+			$this->containers[$name] = self::newContainer($this->getCredentials($name));
+		}
+		/** @var IContainer $container */
+		$container = $this->containers[$name];
+		if (!($container instanceof IContainer)) {
+			throw new Exception();
 		}
 		return $this->containers[$name];
 	}
@@ -96,7 +111,7 @@ class Container implements \ArrayAccess, \Iterator {
 	 */
 
 	public function __get($key) {
-		return $this->getContainer($key);
+		return $this->getAnything($key);
 	}
 
 	public function __call($name, $arguments) {
@@ -112,15 +127,15 @@ class Container implements \ArrayAccess, \Iterator {
 	}
 
 	public function offsetGet($offset) {
-		return $this->getContainer($offset);
+		return $this->getAnything($offset);
 	}
 
 	public function offsetSet($offset, $value) {
-		throw new \Exception('Values are read-only.');
+		throw new Exception('Values are read-only.');
 	}
 
 	public function offsetUnset($offset) {
-		throw new \Exception('Values are read-only.');
+		throw new Exception('Values are read-only.');
 	}
 
 	/*
@@ -128,7 +143,7 @@ class Container implements \ArrayAccess, \Iterator {
 	 */
 
 	public function current() {
-		return $this->getContainer($this->key());
+		return $this->getAnything($this->key());
 	}
 
 	public function key() {
