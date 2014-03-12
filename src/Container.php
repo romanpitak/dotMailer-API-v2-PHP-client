@@ -1,11 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
+
 namespace DotMailer\Api;
 
 use DotMailer\Api\Resources\IResources;
@@ -82,11 +82,11 @@ final class Container implements IContainer {
 	 * ========== IContainer ==========
 	 */
 
+	/** @inheritdoc */
 	public function getResources($name) {
 		if (!isset($this->containers[$name])) {
 			$this->containers[$name] = self::newResources($this->getCredentials($name));
 		}
-		/** @var IResources $resources */
 		$resources = $this->containers[$name];
 		if (!($resources instanceof IResources)) {
 			throw new Exception();
@@ -94,11 +94,11 @@ final class Container implements IContainer {
 		return $resources;
 	}
 
+	/** @inheritdoc */
 	public function getContainer($name) {
 		if (!isset($this->containers[$name])) {
 			$this->containers[$name] = self::newContainer($this->getCredentials($name));
 		}
-		/** @var IContainer $container */
 		$container = $this->containers[$name];
 		if (!($container instanceof IContainer)) {
 			throw new Exception();
