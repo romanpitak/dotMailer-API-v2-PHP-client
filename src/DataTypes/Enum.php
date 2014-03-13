@@ -17,7 +17,7 @@ abstract class Enum implements IDataType {
 		$valueClass = __NAMESPACE__ . '\\' . $this->getDataClass();
 		$this->value = new $valueClass($value);
 		if (!in_array($this->value, $this->getPossibleValues(), false)) {
-			throw new \Exception('Invalid value');
+			throw new InvalidValueException('Invalid value');
 		}
 	}
 
