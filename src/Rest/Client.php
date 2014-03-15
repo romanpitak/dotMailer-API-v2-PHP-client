@@ -10,6 +10,7 @@
 
 namespace DotMailer\Api\Rest;
 
+use RestClient\Exception;
 use RestClient\Request;
 
 /**
@@ -67,7 +68,11 @@ class Client implements IClient {
 		$request = call_user_func_array($callback, $param_arr);
 
 		// get response
-		$response = $request->getResponse();
+		try {
+			$response = $request->getResponse();
+		} catch(Exception $e) {
+			throw new RestClientException();
+		}
 
 		/*
 		 * process response
