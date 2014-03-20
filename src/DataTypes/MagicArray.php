@@ -24,8 +24,10 @@ abstract class MagicArray implements \ArrayAccess, \Iterator, IDataType {
 				$value = json_decode($value, true, 512, JSON_BIGINT_AS_STRING);
 			}
 			// assign
-			foreach ($value as $key => $val) {
-				$this[$key] = $val;
+			if(!is_null($value)) {
+				foreach ($value as $key => $val) {
+					$this[$key] = $val;
+				}
 			}
 		}
 	}
@@ -102,7 +104,11 @@ abstract class MagicArray implements \ArrayAccess, \Iterator, IDataType {
 	function offsetSet($offset, $value) {
 		$offset = $this->convertOffset($offset);
 		$this->checkOffset($offset);
-		$this->data[$offset] = $this->convertValue($value, $offset);
+		if (is_null($offset)) {
+			$this->data[] = $this->convertValue($value, $offset);
+		} else {
+			$this->data[$offset] = $this->convertValue($value, $offset);
+		}
 	}
 
 	function offsetUnset($offset) {
