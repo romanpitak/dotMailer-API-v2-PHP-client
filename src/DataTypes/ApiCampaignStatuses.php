@@ -13,14 +13,14 @@ namespace DotMailer\Api\DataTypes;
 
 final class ApiCampaignStatuses extends Enum {
 	const UNSENT = 'Unsent';
-	const SENDING = 'WebMailForward';
-	const SENT = 'Webmail';
-	const PAUSED = 'Delete';
-	const CANCELLED = 'Delete';
-	const REQUIRES_SYSTEM_APPROVAL = 'Delete';
-	const REQUIRES_SMS_APPROVAL = 'Delete';
-	const REQUIRES_WORKFLOW_APPROVAL = 'Delete';
-	const TRIGGERED = 'Delete';
+	const SENDING = 'Sending';
+	const SENT = 'Sent';
+	const PAUSED = 'Paused';
+	const CANCELLED = 'Cancelled';
+	const REQUIRES_SYSTEM_APPROVAL = 'RequiresSystemApproval';
+	const REQUIRES_SMS_APPROVAL = 'RequiresSMSApproval';
+	const REQUIRES_WORKFLOW_APPROVAL = 'RequiresWorkflowApproval';
+	const TRIGGERED = 'Triggered';
 	const NOT_AVAILABLE_IN_THIS_VERSION = 'NotAvailableInThisVersion';
 
 	protected function getDataClass() {
