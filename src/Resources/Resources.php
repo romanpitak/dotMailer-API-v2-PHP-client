@@ -301,7 +301,7 @@ final class Resources implements IResources {
 	}
 
 	public function UpdateCampaign(ApiCampaign $apiCampaign) {
-		return new ApiCampaign($this->execute(sprintf("campaigns/%s", $apiCampaign->id), 'PUT', $apiCampaign));
+		return new ApiCampaign($this->execute(sprintf("campaigns/%s", $apiCampaign->id), 'PUT', $apiCampaign->toJson()));
 	}
 
 	public function PostCampaignsSend(ApiCampaignSend $apiCampaignSend) {
