@@ -1,5 +1,4 @@
-dotMailer API v2 PHP client
-===============
+# dotMailer API v2 PHP client
 (c) 2014 Roman Piták, http://pitak.net <roman@pitak.net>
 
 PHP client library for the dotMailer v2 (REST) API with **multiple accounts support!**
@@ -8,14 +7,21 @@ PHP client library for the dotMailer v2 (REST) API with **multiple accounts supp
 
 Type hinting support for objects and resources (not yet for arrays).
 
-Single account usage
---------------------
+## Installation
+The best way to install is to use the [Composer](https://getcomposer.org/) dependency manager.
+
+    php composer.phar require romanpitak/dotmailer-api-v2-client
+
+## Usage
+### Single account usage
 
 	<?php
 
+	    require_once('vendor/autoload.php');
+
 		$credentials = array(
-			'username' =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
-			'password' => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
+			Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
+			Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
 		);
 
 		$resources = Container::newResources($credentials);
@@ -24,24 +30,25 @@ Single account usage
 
 	?>
 
-Multiple accounts usage
------------------------
+### Multiple accounts usage
 
 	<?php
 
+	    require_once('vendor/autoload.php');
+
 		$credentials = array(
 			'master' => array(
-				'username' =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
-				'password' => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
+				Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
+				Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
 			),
 			'group1' => array(
 				'g1-account1' => array(
-					'username' =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
-					'password' => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
+					Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
+					Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
 				),
 				'g1-account2' => array(
-					'username' =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
-					'password' => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
+					Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
+					Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
 				)
 			)
 		);
