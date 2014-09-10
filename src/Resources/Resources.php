@@ -125,7 +125,7 @@ final class Resources implements IResources {
 
 	public function PostAddressBookContactsDelete($addressBookId, $contactIdList) {
 		$url = sprintf("address-books/%s/contacts/delete", $addressBookId);
-		$this->execute($url, 'DELETE', $contactIdList->toJson());
+		$this->execute($url, 'POST', $contactIdList->toJson());
 	}
 
 	public function PostAddressBookContactsImport($addressBookId, ApiFileMedia $apiFileMedia) {
