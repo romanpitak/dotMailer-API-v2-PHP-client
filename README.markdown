@@ -15,63 +15,109 @@ The best way to install is to use the [Composer](https://getcomposer.org/) depen
 ## Usage
 ### Single account usage
 
-	<?php
+    require_once('vendor/autoload.php');
 
-	    require_once('vendor/autoload.php');
+    $credentials = array(
+        Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
+        Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
+    );
 
-		$credentials = array(
-			Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
-			Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
-		);
+    $resources = Container::newResources($credentials);
 
-		$resources = Container::newResources($credentials);
-
-		echo $resources->GetAccountInfo();
-
-	?>
+    echo $resources->GetAccountInfo();
 
 ### Multiple accounts usage
 
-	<?php
+    require_once('vendor/autoload.php');
 
-	    require_once('vendor/autoload.php');
+    $credentials = array(
+        'master' => array(
+            Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
+            Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
+        ),
+        'group1' => array(
+            'g1-account1' => array(
+                Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
+                Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
+            ),
+            'g1-account2' => array(
+                Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
+                Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
+            )
+        )
+    );
 
-		$credentials = array(
-			'master' => array(
-				Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
-				Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
-			),
-			'group1' => array(
-				'g1-account1' => array(
-					Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
-					Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
-				),
-				'g1-account2' => array(
-					Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
-					Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
-				)
-			)
-		);
+    $container = Container::newContainer($credentials);
 
-		$container = Container::newContainer($credentials);
+    echo $container->getResources('master')->GetSegments();
 
-		echo $container->getResources('master')->GetSegments();
+    $dataField = new ApiDataField();
+    $dataField->name = 'MY_DATA_FIELD';
+    $dataField->type = ApiDataTypes::STRING;
+    $dataField->visibility = ApiDataFieldVisibility::HIDDEN;
 
-		$dataField = new ApiDataField();
-		$dataField->name = 'MY_DATA_FIELD';
-		$dataField->type = ApiDataTypes::STRING;
-		$dataField->visibility = ApiDataFieldVisibility::HIDDEN;
+    foreach ($container->group1 as $resources) {
+        try {
+            $resources->PostDataFields($dataField);
+            echo 'OK';
+        } catch (Exception $e) {
+            echo 'Already exists';
+        }
+    }
 
-		foreach ($container->group1 as $resources) {
-			try {
-				$resources->PostDataFields($dataField);
-				echo 'OK';
-			} catch (Exception $e) {
-				echo 'Already exists';
-			}
-		}
+### Create campaign with images (read life example)
 
-	?>
+    // find the correct custom from address
+    $customFromAddresses = $account->GetCustomFromAddresses();
+    $customFromAddress = null;
+    foreach ($customFromAddresses as $cfa) {
+        if ('roman@pitak.net' == $cfa->email) {
+            $customFromAddress = $cfa;
+            break;
+        }
+    }
+    if (is_null($customFromAddress)) {
+        throw new \Exception('Custom from address not found in the account.');
+    }
+
+    // Create campaign to get campaign ID
+    // we need the campaign id later to create image folder
+    $campaign = new ApiCampaign();
+    $campaign->name = 'My API Campaign';
+    $campaign->subject = 'Api Works';
+    $campaign->fromName = "Roman Piták";
+    $campaign->fromAddress = $customFromAddress->toJson();
+    // empty content (must include unsubscribe links)
+    $campaign->htmlContent = '<a href="http://$unsub$">UNSUB</a>';
+    $campaign->plainTextContent = 'http://$unsub$';
+    // save campaign
+    $campaign = $account->PostCampaigns($campaign);
+
+    // Create image folder
+    $folder = new ApiImageFolder();
+    $folder->name = date('c') . ' cid=' . (string)$campaign->id;
+    $folder = $account->PostImageFolder(new XsInt(0), $folder);
+    $folderId = $folder->id;
+
+    // Upload images
+    foreach ($images as $baseName => $data) {
+        $apiFileMedia = new ApiFileMedia();
+        $apiFileMedia->fileName = pathinfo($data['file'], PATHINFO_FILENAME);
+        $apiFileMedia->data = base64_encode(file_get_contents($data['file']));
+        $apiImage = $account->PostImageFolderImages($folderId, $apiFileMedia);
+        // set the dotMailer src for the images
+        $images[$baseName]['src'] = (string)$apiImage->path;
+    }
+
+    // UPDATE CAMPAIGN
+    $campaign->id = $campaign->id->toJson();
+    // getIndexHtml returns the html of the email with the correct src attribute for the images
+    // it uses the $images array
+    $htmlContent = getIndexHtml($includeDirectory);
+    $campaign->htmlContent = $htmlContent;
+    $html2text = new Html2Text($htmlContent);
+    $campaign->plainTextContent = $html2text->get_text();
+    $account->UpdateCampaign($campaign);
 
 TODO
 ----
