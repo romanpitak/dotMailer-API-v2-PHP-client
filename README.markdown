@@ -65,7 +65,7 @@ The best way to install is to use the [Composer](https://getcomposer.org/) depen
         }
     }
 
-### Create campaign with images (read life example)
+### Create campaign with images (real life example)
 
     // find the correct custom from address
     $customFromAddresses = $account->GetCustomFromAddresses();
