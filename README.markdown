@@ -1,4 +1,6 @@
 # dotMailer API v2 PHP client
+[![Latest Stable Version](https://poser.pugx.org/romanpitak/dotmailer-api-v2-client/v/stable.svg)](https://packagist.org/packages/romanpitak/dotmailer-api-v2-client) [![Total Downloads](https://poser.pugx.org/romanpitak/dotmailer-api-v2-client/downloads.svg)](https://packagist.org/packages/romanpitak/dotmailer-api-v2-client) [![Latest Unstable Version](https://poser.pugx.org/romanpitak/dotmailer-api-v2-client/v/unstable.svg)](https://packagist.org/packages/romanpitak/dotmailer-api-v2-client) [![License](https://poser.pugx.org/romanpitak/dotmailer-api-v2-client/license.svg)](https://packagist.org/packages/romanpitak/dotmailer-api-v2-client)
+
 (c) 2014 Roman Piták, http://pitak.net <roman@pitak.net>
 
 PHP client library for the dotMailer v2 (REST) API with **multiple accounts support!**
