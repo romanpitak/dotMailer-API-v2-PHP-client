@@ -29,7 +29,7 @@
     "require": {
         "php": ">=5.3.3",
         "ext-json": "*",
-        "romanpitak/php-rest-client": ">=v1.1"
+        "romanpitak/php-rest-client": ">=v1.2"
     },
     "autoload": {
         "psr-4": {
