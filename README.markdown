@@ -17,55 +17,61 @@ The best way to install is to use the [Composer](https://getcomposer.org/) depen
 ## Usage
 ### Single account usage
 
-    require_once('vendor/autoload.php');
+```php
+require_once('vendor/autoload.php');
 
-    $credentials = array(
-        Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
-        Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
-    );
+$credentials = array(
+    Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
+    Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
+);
+```
 
-    $resources = Container::newResources($credentials);
+$resources = Container::newResources($credentials);
 
-    echo $resources->GetAccountInfo();
+echo $resources->GetAccountInfo();
 
 ### Multiple accounts usage
 
-    require_once('vendor/autoload.php');
+```php
+<?php
 
-    $credentials = array(
-        'master' => array(
+require_once('vendor/autoload.php');
+
+$credentials = array(
+    'master' => array(
+        Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
+        Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
+    ),
+    'group1' => array(
+        'g1-account1' => array(
             Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
             Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
         ),
-        'group1' => array(
-            'g1-account1' => array(
-                Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
-                Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
-            ),
-            'g1-account2' => array(
-                Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
-                Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
-            )
+        'g1-account2' => array(
+            Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
+            Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
         )
-    );
+    )
+);
 
-    $container = Container::newContainer($credentials);
+$container = Container::newContainer($credentials);
 
-    echo $container->getResources('master')->GetSegments();
+echo $container->getResources('master')->GetSegments();
 
-    $dataField = new ApiDataField();
-    $dataField->name = 'MY_DATA_FIELD';
-    $dataField->type = ApiDataTypes::STRING;
-    $dataField->visibility = ApiDataFieldVisibility::HIDDEN;
+$dataField = new ApiDataField();
+$dataField->name = 'MY_DATA_FIELD';
+$dataField->type = ApiDataTypes::STRING;
+$dataField->visibility = ApiDataFieldVisibility::HIDDEN;
 
-    foreach ($container->group1 as $resources) {
-        try {
-            $resources->PostDataFields($dataField);
-            echo 'OK';
-        } catch (Exception $e) {
-            echo 'Already exists';
-        }
+foreach ($container->group1 as $resources) {
+    try {
+        $resources->PostDataFields($dataField);
+        echo 'OK';
+    } catch (Exception $e) {
+        echo 'Already exists';
     }
+}
+```
 
 ### Create campaign with images (real life example)
 
