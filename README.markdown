@@ -26,11 +26,11 @@ $credentials = array(
     Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
     Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
 );
-```
 
 $resources = Container::newResources($credentials);
 
 echo $resources->GetAccountInfo();
+```
 
 ### Multiple accounts usage
 
