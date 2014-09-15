@@ -12,7 +12,9 @@ Type hinting support for objects and resources (not yet for arrays).
 ## Installation
 The best way to install is to use the [Composer](https://getcomposer.org/) dependency manager.
 
-    php composer.phar require romanpitak/dotmailer-api-v2-client
+```
+php composer.phar require romanpitak/dotmailer-api-v2-client
+```
 
 ## Usage
 ### Single account usage
@@ -33,8 +35,6 @@ echo $resources->GetAccountInfo();
 ### Multiple accounts usage
 
 ```php
-<?php
-
 require_once('vendor/autoload.php');
 
 $credentials = array(
@@ -75,63 +75,61 @@ foreach ($container->group1 as $resources) {
 
 ### Create campaign with images (real life example)
 
-    // find the correct custom from address
-    $customFromAddresses = $account->GetCustomFromAddresses();
-    $customFromAddress = null;
-    foreach ($customFromAddresses as $cfa) {
-        if ('roman@pitak.net' == $cfa->email) {
-            $customFromAddress = $cfa;
-            break;
-        }
+```php
+// find the correct custom from address
+$customFromAddresses = $account->GetCustomFromAddresses();
+$customFromAddress = null;
+foreach ($customFromAddresses as $cfa) {
+    if ('roman@pitak.net' == $cfa->email) {
+        $customFromAddress = $cfa;
+        break;
     }
-    if (is_null($customFromAddress)) {
-        throw new \Exception('Custom from address not found in the account.');
-    }
+}
+if (is_null($customFromAddress)) {
+    throw new \Exception('Custom from address not found in the account.');
+}
 
-    // Create campaign to get campaign ID
-    // we need the campaign id later to create image folder
-    $campaign = new ApiCampaign();
-    $campaign->name = 'My API Campaign';
-    $campaign->subject = 'Api Works';
-    $campaign->fromName = "Roman Piták";
-    $campaign->fromAddress = $customFromAddress->toJson();
-    // empty content (must include unsubscribe links)
-    $campaign->htmlContent = '<a href="http://$unsub$">UNSUB</a>';
-    $campaign->plainTextContent = 'http://$unsub$';
-    // save campaign
-    $campaign = $account->PostCampaigns($campaign);
+// Create campaign to get campaign ID
+// we need the campaign id later to create image folder
+$campaign = new ApiCampaign();
+$campaign->name = 'My API Campaign';
+$campaign->subject = 'Api Works';
+$campaign->fromName = "Roman Piták";
+$campaign->fromAddress = $customFromAddress->toJson();
+// empty content (must include unsubscribe links)
+$campaign->htmlContent = '<a href="http://$unsub$">UNSUB</a>';
+$campaign->plainTextContent = 'http://$unsub$';
+// save campaign
+$campaign = $account->PostCampaigns($campaign);
 
-    // Create image folder
-    $folder = new ApiImageFolder();
-    $folder->name = date('c') . ' cid=' . (string)$campaign->id;
-    $folder = $account->PostImageFolder(new XsInt(0), $folder);
-    $folderId = $folder->id;
+// Create image folder
+$folder = new ApiImageFolder();
+$folder->name = date('c') . ' cid=' . (string)$campaign->id;
+$folder = $account->PostImageFolder(new XsInt(0), $folder);
+$folderId = $folder->id;
 
-    // Upload images
-    foreach ($images as $baseName => $data) {
-        $apiFileMedia = new ApiFileMedia();
-        $apiFileMedia->fileName = pathinfo($data['file'], PATHINFO_FILENAME);
-        $apiFileMedia->data = base64_encode(file_get_contents($data['file']));
-        $apiImage = $account->PostImageFolderImages($folderId, $apiFileMedia);
-        // set the dotMailer src for the images
-        $images[$baseName]['src'] = (string)$apiImage->path;
-    }
+// Upload images
+foreach ($images as $baseName => $data) {
+    $apiFileMedia = new ApiFileMedia();
+    $apiFileMedia->fileName = pathinfo($data['file'], PATHINFO_FILENAME);
+    $apiFileMedia->data = base64_encode(file_get_contents($data['file']));
+    $apiImage = $account->PostImageFolderImages($folderId, $apiFileMedia);
+    // set the dotMailer src for the images
+    $images[$baseName]['src'] = (string)$apiImage->path;
+}
 
-    // UPDATE CAMPAIGN
-    $campaign->id = $campaign->id->toJson();
-    // getIndexHtml returns the html of the email with the correct src attribute for the images
-    // it uses the $images array
-    $htmlContent = getIndexHtml($includeDirectory);
-    $campaign->htmlContent = $htmlContent;
-    $html2text = new Html2Text($htmlContent);
-    $campaign->plainTextContent = $html2text->get_text();
-    $account->UpdateCampaign($campaign);
+// UPDATE CAMPAIGN
+$campaign->id = $campaign->id->toJson();
+// getIndexHtml returns the html of the email with the correct src attribute for the images
+// it uses the $images array
+$htmlContent = getIndexHtml($includeDirectory);
+$campaign->htmlContent = $htmlContent;
+$html2text = new Html2Text($htmlContent);
+$campaign->plainTextContent = $html2text->get_text();
+$account->UpdateCampaign($campaign);
+```
 
-TODO
-----
-
-Refactor Simple data types
-
-Split IResources into sub-interfaces
-
-Interfaces for data types
+## TODO
+- Refactor Simple data types
+- Split IResources into sub-interfaces
+- Interfaces for data types
