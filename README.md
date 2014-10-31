@@ -20,6 +20,7 @@ php composer.phar require romanpitak/dotmailer-api-v2-client
 ### Single account usage
 
 ```php
+<?php
 require_once('vendor/autoload.php');
 
 $credentials = array(
@@ -35,6 +36,7 @@ echo $resources->GetAccountInfo();
 ### Multiple accounts usage
 
 ```php
+<?php
 require_once('vendor/autoload.php');
 
 $credentials = array(
@@ -76,6 +78,7 @@ foreach ($container->group1 as $resources) {
 ### Create campaign with images (real life example)
 
 ```php
+<?php
 // find the correct custom from address
 $customFromAddresses = $account->GetCustomFromAddresses();
 $customFromAddress = null;
