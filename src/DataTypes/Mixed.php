@@ -25,7 +25,7 @@ class Mixed implements IDataType {
 	}
 
 	public function toJson() {
-		return (string)$this;
+        return json_encode($this->value);
 	}
 
 }
