@@ -21,7 +21,7 @@ final class ApiContactData extends JsonObject {
 
 	protected function getProperties() {
 		return array(
-			'key' => 'XsString',
+			'Key' => 'XsString',
 			'Value' => 'Mixed'
 		);
 	}
