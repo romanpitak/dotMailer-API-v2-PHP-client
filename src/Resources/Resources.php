@@ -305,7 +305,7 @@ final class Resources implements IResources {
 	}
 
 	public function PostCampaignsSend(ApiCampaignSend $apiCampaignSend) {
-		return new ApiCampaignSend('campaigns/send', 'POST', $apiCampaignSend->toJson());
+		return new ApiCampaignSend($this->execute('campaigns/send', 'POST', $apiCampaignSend->toJson()));
 	}
 
 	public function GetCampaignsSendBySendId($sendId) {
