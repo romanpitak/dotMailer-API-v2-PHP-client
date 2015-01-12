@@ -3,7 +3,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/romanpitak/dotmailer-api-v2-client.svg)](https://packagist.org/packages/romanpitak/dotmailer-api-v2-client) 
 [![License](https://img.shields.io/packagist/l/romanpitak/dotmailer-api-v2-client.svg)](https://packagist.org/packages/romanpitak/dotmailer-api-v2-client)
 
-(c) 2014 Roman Piták, http://pitak.net <roman@pitak.net>
+(c) 2014-2015 Roman Piták, http://pitak.net <roman@pitak.net>
 
 PHP client library for the dotMailer v2 (REST) API with **multiple accounts support!**
 
