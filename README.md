@@ -138,9 +138,3 @@ $html2text = new Html2Text($htmlContent);
 $campaign->plainTextContent = $html2text->get_text();
 $account->UpdateCampaign($campaign);
 ```
-
-## TODO
-
-- Refactor Simple data types
-- Split IResources into sub-interfaces
-- Interfaces for data types
