@@ -11,7 +11,7 @@ namespace DotMailer\Api\DataTypes;
 final class ApiDataFieldList extends JsonArray
 {
 
-    function getDataClass()
+    protected function getDataClass()
     {
         return 'ApiDataField';
     }

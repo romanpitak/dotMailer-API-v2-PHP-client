@@ -17,7 +17,7 @@ abstract class JsonObject extends MagicArray
     /** @var array */
     protected $outputKeys;
 
-    function __construct($value = null)
+    public function __construct($value = null)
     {
 
         foreach ($this->getProperties() as $key => $val) {
@@ -54,7 +54,7 @@ abstract class JsonObject extends MagicArray
         return strtolower($offset);
     }
 
-    function convertValue($value, $offset)
+    protected function convertValue($value, $offset)
     {
         if (is_null($value)) {
             return new Null();
@@ -70,7 +70,7 @@ abstract class JsonObject extends MagicArray
      * ========== IDataType ==========
      */
 
-    function toJson()
+    public function toJson()
     {
         $contents = array();
         foreach ($this->data as $key => $value) {

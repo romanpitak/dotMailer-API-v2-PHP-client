@@ -76,7 +76,7 @@ abstract class MagicArray implements \ArrayAccess, \Iterator, IDataType
      * ========== IDataType ==========
      */
 
-    function toArray()
+    public function toArray()
     {
         $data = $this->data;
         foreach ($data as $key => $value) {
@@ -85,7 +85,7 @@ abstract class MagicArray implements \ArrayAccess, \Iterator, IDataType
         return $data;
     }
 
-    function __toString()
+    public function __toString()
     {
         return $this->toJson();
     }
@@ -94,21 +94,21 @@ abstract class MagicArray implements \ArrayAccess, \Iterator, IDataType
      * ========== ArrayAccess ==========
      */
 
-    function offsetExists($offset)
+    public function offsetExists($offset)
     {
         $offset = $this->convertOffset($offset);
         $this->checkOffset($offset);
         return isset($this->data[$offset]);
     }
 
-    function offsetGet($offset)
+    public function offsetGet($offset)
     {
         $offset = $this->convertOffset($offset);
         $this->checkOffset($offset);
         return $this->data[$offset];
     }
 
-    function offsetSet($offset, $value)
+    public function offsetSet($offset, $value)
     {
         $offset = $this->convertOffset($offset);
         $this->checkOffset($offset);
@@ -119,7 +119,7 @@ abstract class MagicArray implements \ArrayAccess, \Iterator, IDataType
         }
     }
 
-    function offsetUnset($offset)
+    public function offsetUnset($offset)
     {
         $offset = $this->convertOffset($offset);
         $this->checkOffset($offset);

@@ -26,17 +26,17 @@ abstract class JsonArray extends MagicArray
      * ========== MagicArray ==========
      */
 
-    function offsetIsAllowed($offset)
+    protected function offsetIsAllowed($offset)
     {
         return (is_null($offset) || (((string)(int)$offset) == $offset) || is_int($offset));
     }
 
-    function convertOffset($offset)
+    protected function convertOffset($offset)
     {
         return is_null($offset) ? null : (int)$offset;
     }
 
-    function convertValue($value, $offset = null)
+    protected function convertValue($value, $offset = null)
     {
         $dataClass = __NAMESPACE__ . '\\' . $this->getDataClass();
         return new $dataClass($value);
@@ -47,7 +47,7 @@ abstract class JsonArray extends MagicArray
      * ========== IDataType ==========
      */
 
-    function toJson()
+    public function toJson()
     {
         $contents = array();
         foreach ($this->data as $value) {
