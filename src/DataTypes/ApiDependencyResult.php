@@ -1,11 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
+
 namespace DotMailer\Api\DataTypes;
 
 /**
@@ -14,13 +14,15 @@ namespace DotMailer\Api\DataTypes;
  * @property ApiDependencyList dependencies
  * @property XsBoolean result
  */
-final class ApiDependencyResult extends JsonObject {
+final class ApiDependencyResult extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'Dependencies' => 'ApiDependencyList',
-			'Result' => 'XsBoolean'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'Dependencies' => 'ApiDependencyList',
+            'Result' => 'XsBoolean'
+        );
+    }
 
 }

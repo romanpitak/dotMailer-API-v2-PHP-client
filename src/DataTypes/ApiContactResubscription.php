@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -18,14 +17,16 @@ namespace DotMailer\Api\DataTypes;
  * @property XsString returnUrlToUseIfChallenged
  *
  */
-final class ApiContactResubscription extends JsonObject {
+final class ApiContactResubscription extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'UnsubscribedContact' => 'ApiContact',
-			'PreferredLocale' => 'XsString',
-			'ReturnUrlToUseIfChallenged' => 'XsString',
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'UnsubscribedContact' => 'ApiContact',
+            'PreferredLocale' => 'XsString',
+            'ReturnUrlToUseIfChallenged' => 'XsString',
+        );
+    }
 
-} 
+}

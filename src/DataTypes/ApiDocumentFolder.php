@@ -1,9 +1,9 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
 
 namespace DotMailer\Api\DataTypes;
@@ -15,14 +15,16 @@ namespace DotMailer\Api\DataTypes;
  * @property XsString name
  * @property ApiDocumentFolderList childFolders
  */
-final class ApiDocumentFolder extends JsonObject {
+final class ApiDocumentFolder extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'Id' => 'XsInt',
-			'Name' => 'XsString',
-			'ChildFolders' => 'ApiDocumentFolderList'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'Id' => 'XsInt',
+            'Name' => 'XsString',
+            'ChildFolders' => 'ApiDocumentFolderList'
+        );
+    }
 
-} 
+}

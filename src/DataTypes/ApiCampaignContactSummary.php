@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -30,26 +29,28 @@ namespace DotMailer\Api\DataTypes;
  * @property XsBoolean hardBounced
  *
  */
-final class ApiCampaignContactSummary extends JsonObject {
+final class ApiCampaignContactSummary extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'ContactId' => 'XsInt',
-			'Email' => 'XsString',
-			'NumOpens' => 'XsInt',
-			'NumPageViews' => 'XsInt',
-			'NumClicks' => 'XsInt',
-			'NumForwards' => 'XsInt',
-			'NumEstimatedForwards' => 'XsInt',
-			'NumReplies' => 'XsInt',
-			'DateSent' => 'XsDateTime',
-			'DateFirstOpened' => 'XsDateTime',
-			'DateLastOpened' => 'XsDateTime',
-			'FirstOpenIp' => 'XsString',
-			'Unsubscribed' => 'XsBoolean',
-			'SoftBounced' => 'XsBoolean',
-			'HardBounced' => 'XsBoolean'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'ContactId' => 'XsInt',
+            'Email' => 'XsString',
+            'NumOpens' => 'XsInt',
+            'NumPageViews' => 'XsInt',
+            'NumClicks' => 'XsInt',
+            'NumForwards' => 'XsInt',
+            'NumEstimatedForwards' => 'XsInt',
+            'NumReplies' => 'XsInt',
+            'DateSent' => 'XsDateTime',
+            'DateFirstOpened' => 'XsDateTime',
+            'DateLastOpened' => 'XsDateTime',
+            'FirstOpenIp' => 'XsString',
+            'Unsubscribed' => 'XsBoolean',
+            'SoftBounced' => 'XsBoolean',
+            'HardBounced' => 'XsBoolean'
+        );
+    }
 
-} 
+}

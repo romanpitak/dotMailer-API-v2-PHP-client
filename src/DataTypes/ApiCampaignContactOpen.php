@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -24,20 +23,22 @@ namespace DotMailer\Api\DataTypes;
  * @property XsDateTime DateOpened
  *
  */
-final class ApiCampaignContactOpen extends JsonObject {
+final class ApiCampaignContactOpen extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'ContactId' => 'XsInt',
-			'Email' => 'XsString',
-			'MailClient' => 'XsString',
-			'MailClientVersion' => 'XsString',
-			'IpAddress' => 'XsString',
-			'UserAgent' => 'XsString',
-			'IsHtml' => 'XsBoolean',
-			'IsForward' => 'XsBoolean',
-			'DateOpened' => 'XsDateTime',
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'ContactId' => 'XsInt',
+            'Email' => 'XsString',
+            'MailClient' => 'XsString',
+            'MailClientVersion' => 'XsString',
+            'IpAddress' => 'XsString',
+            'UserAgent' => 'XsString',
+            'IsHtml' => 'XsBoolean',
+            'IsForward' => 'XsBoolean',
+            'DateOpened' => 'XsDateTime',
+        );
+    }
 
-} 
+}

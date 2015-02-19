@@ -1,20 +1,21 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
 
-final class ApiAddressBookList extends JsonArray {
+final class ApiAddressBookList extends JsonArray
+{
 
-	function getDataClass() {
-		return 'ApiAddressBook';
-	}
+    function getDataClass()
+    {
+        return 'ApiAddressBook';
+    }
 
-} 
+}

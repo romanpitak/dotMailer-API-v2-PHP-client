@@ -1,19 +1,20 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
 
-final class ApiTransactionalDataList extends JsonArray {
+final class ApiTransactionalDataList extends JsonArray
+{
 
-	protected function getDataClass() {
-		return 'ApiTransactionalData';
-	}
-} 
+    protected function getDataClass()
+    {
+        return 'ApiTransactionalData';
+    }
+}

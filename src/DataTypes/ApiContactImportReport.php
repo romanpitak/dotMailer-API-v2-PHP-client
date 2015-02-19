@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -28,25 +27,27 @@ namespace DotMailer\Api\DataTypes;
  * @property XsInt PendingDoubleOptin
  * @property XsInt Failures
  */
-final class ApiContactImportReport extends JsonObject {
+final class ApiContactImportReport extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'NewContacts' => 'XsInt',
-			'UpdatedContacts' => 'XsInt',
-			'GloballySuppressed' => 'XsInt',
-			'InvalidEntries' => 'XsInt',
-			'DuplicateEmails' => 'XsInt',
-			'Blocked' => 'XsInt',
-			'Unsubscribed' => 'XsInt',
-			'HardBounced' => 'XsInt',
-			'SoftBounced' => 'XsInt',
-			'IspComplaints' => 'XsInt',
-			'MailBlocked' => 'XsInt',
-			'DomainSuppressed' => 'XsInt',
-			'PendingDoubleOptin' => 'XsInt',
-			'Failures' => 'XsInt'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'NewContacts' => 'XsInt',
+            'UpdatedContacts' => 'XsInt',
+            'GloballySuppressed' => 'XsInt',
+            'InvalidEntries' => 'XsInt',
+            'DuplicateEmails' => 'XsInt',
+            'Blocked' => 'XsInt',
+            'Unsubscribed' => 'XsInt',
+            'HardBounced' => 'XsInt',
+            'SoftBounced' => 'XsInt',
+            'IspComplaints' => 'XsInt',
+            'MailBlocked' => 'XsInt',
+            'DomainSuppressed' => 'XsInt',
+            'PendingDoubleOptin' => 'XsInt',
+            'Failures' => 'XsInt'
+        );
+    }
 
-} 
+}

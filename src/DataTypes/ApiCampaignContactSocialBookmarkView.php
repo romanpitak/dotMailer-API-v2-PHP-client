@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -19,15 +18,17 @@ namespace DotMailer\Api\DataTypes;
  * @property XsString bookmarkName
  * @property XsInt numViews
  */
-final class ApiCampaignContactSocialBookmarkView extends JsonObject {
+final class ApiCampaignContactSocialBookmarkView extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'ContactId' => 'XsInt',
-			'Email' => 'XsString',
-			'BookmarkName' => 'XsString',
-			'NumViews' => 'XsInt',
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'ContactId' => 'XsInt',
+            'Email' => 'XsString',
+            'BookmarkName' => 'XsString',
+            'NumViews' => 'XsInt',
+        );
+    }
 
-} 
+}

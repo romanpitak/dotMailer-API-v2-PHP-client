@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -66,63 +65,65 @@ namespace DotMailer\Api\DataTypes;
  * @property XsDouble PercentageUsersClicked
  * @property XsDouble PercentageClicksToOpens
  */
-final class ApiCampaignSummary extends JsonObject {
+final class ApiCampaignSummary extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'DateSent' => 'XsDateTime',
-			'NumUniqueOpens' => 'XsInt',
-			'NumUniqueTextOpens' => 'XsInt',
-			'NumTotalUniqueOpens' => 'XsInt',
-			'NumOpens' => 'XsInt',
-			'NumTextOpens' => 'XsInt',
-			'NumTotalOpens' => 'XsInt',
-			'NumClicks' => 'XsInt',
-			'NumTextClicks' => 'XsInt',
-			'NumTotalClicks' => 'XsInt',
-			'NumPageViews' => 'XsInt',
-			'NumTotalPageViews' => 'XsInt',
-			'NumTextPageViews' => 'XsInt',
-			'NumForwards' => 'XsInt',
-			'NumTextForwards' => 'XsInt',
-			'NumEstimatedForwards' => 'XsInt',
-			'NumTextEstimatedForwards' => 'XsInt',
-			'NumTotalEstimatedForwards' => 'XsInt',
-			'NumReplies' => 'XsInt',
-			'NumTextReplies' => 'XsInt',
-			'NumTotalReplies' => 'XsInt',
-			'NumHardBounces' => 'XsInt',
-			'NumTextHardBounces' => 'XsInt',
-			'NumTotalHardBounces' => 'XsInt',
-			'NumSoftBounces' => 'XsInt',
-			'NumTextSoftBounces' => 'XsInt',
-			'NumTotalSoftBounces' => 'XsInt',
-			'NumUnsubscribes' => 'XsInt',
-			'NumTextUnsubscribes' => 'XsInt',
-			'NumTotalUnsubscribes' => 'XsInt',
-			'NumIspComplaints' => 'XsInt',
-			'NumTextIspComplaints' => 'XsInt',
-			'NumTotalIspComplaints' => 'XsInt',
-			'NumMailBlocks' => 'XsInt',
-			'NumTextMailBlocks' => 'XsInt',
-			'NumTotalMailBlocks' => 'XsInt',
-			'NumSent' => 'XsInt',
-			'NumTextSent' => 'XsInt',
-			'NumTotalSent' => 'XsInt',
-			'NumRecipientsClicked' => 'XsInt',
-			'NumDelivered' => 'XsInt',
-			'NumTextDelivered' => 'XsInt',
-			'NumTotalDelivered' => 'XsInt',
-			'PercentageDelivered' => 'XsDouble',
-			'PercentageUniqueOpens' => 'XsDouble',
-			'PercentageOpens' => 'XsDouble',
-			'PercentageUnsubscribes' => 'XsDouble',
-			'PercentageReplies' => 'XsDouble',
-			'PercentageHardBounces' => 'XsDouble',
-			'PercentageSoftBounces' => 'XsDouble',
-			'PercentageUsersClicked' => 'XsDouble',
-			'PercentageClicksToOpens' => 'XsDouble'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'DateSent' => 'XsDateTime',
+            'NumUniqueOpens' => 'XsInt',
+            'NumUniqueTextOpens' => 'XsInt',
+            'NumTotalUniqueOpens' => 'XsInt',
+            'NumOpens' => 'XsInt',
+            'NumTextOpens' => 'XsInt',
+            'NumTotalOpens' => 'XsInt',
+            'NumClicks' => 'XsInt',
+            'NumTextClicks' => 'XsInt',
+            'NumTotalClicks' => 'XsInt',
+            'NumPageViews' => 'XsInt',
+            'NumTotalPageViews' => 'XsInt',
+            'NumTextPageViews' => 'XsInt',
+            'NumForwards' => 'XsInt',
+            'NumTextForwards' => 'XsInt',
+            'NumEstimatedForwards' => 'XsInt',
+            'NumTextEstimatedForwards' => 'XsInt',
+            'NumTotalEstimatedForwards' => 'XsInt',
+            'NumReplies' => 'XsInt',
+            'NumTextReplies' => 'XsInt',
+            'NumTotalReplies' => 'XsInt',
+            'NumHardBounces' => 'XsInt',
+            'NumTextHardBounces' => 'XsInt',
+            'NumTotalHardBounces' => 'XsInt',
+            'NumSoftBounces' => 'XsInt',
+            'NumTextSoftBounces' => 'XsInt',
+            'NumTotalSoftBounces' => 'XsInt',
+            'NumUnsubscribes' => 'XsInt',
+            'NumTextUnsubscribes' => 'XsInt',
+            'NumTotalUnsubscribes' => 'XsInt',
+            'NumIspComplaints' => 'XsInt',
+            'NumTextIspComplaints' => 'XsInt',
+            'NumTotalIspComplaints' => 'XsInt',
+            'NumMailBlocks' => 'XsInt',
+            'NumTextMailBlocks' => 'XsInt',
+            'NumTotalMailBlocks' => 'XsInt',
+            'NumSent' => 'XsInt',
+            'NumTextSent' => 'XsInt',
+            'NumTotalSent' => 'XsInt',
+            'NumRecipientsClicked' => 'XsInt',
+            'NumDelivered' => 'XsInt',
+            'NumTextDelivered' => 'XsInt',
+            'NumTotalDelivered' => 'XsInt',
+            'PercentageDelivered' => 'XsDouble',
+            'PercentageUniqueOpens' => 'XsDouble',
+            'PercentageOpens' => 'XsDouble',
+            'PercentageUnsubscribes' => 'XsDouble',
+            'PercentageReplies' => 'XsDouble',
+            'PercentageHardBounces' => 'XsDouble',
+            'PercentageSoftBounces' => 'XsDouble',
+            'PercentageUsersClicked' => 'XsDouble',
+            'PercentageClicksToOpens' => 'XsDouble'
+        );
+    }
 
-} 
+}

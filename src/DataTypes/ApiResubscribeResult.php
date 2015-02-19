@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -17,13 +16,15 @@ namespace DotMailer\Api\DataTypes;
  * @property ApiResubscribeStatuses status
  *
  */
-final class ApiResubscribeResult extends JsonObject {
+final class ApiResubscribeResult extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'Contact' => 'ApiContact',
-			'Status' => 'ApiResubscribeStatuses'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'Contact' => 'ApiContact',
+            'Status' => 'ApiResubscribeStatuses'
+        );
+    }
 
-} 
+}

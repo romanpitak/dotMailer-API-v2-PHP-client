@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -22,17 +21,19 @@ namespace DotMailer\Api\DataTypes;
  *
  *
  */
-final class ApiContact extends JsonObject {
+final class ApiContact extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'Id' => 'XsInt',
-			'Email' => 'XsString',
-			'OptInType' => 'ApiContactOptInTypes',
-			'EmailType' => 'ApiContactEmailTypes',
-			'DataFields' => 'ApiContactDataList',
-			'Status' => 'ApiContactStatuses'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'Id' => 'XsInt',
+            'Email' => 'XsString',
+            'OptInType' => 'ApiContactOptInTypes',
+            'EmailType' => 'ApiContactEmailTypes',
+            'DataFields' => 'ApiContactDataList',
+            'Status' => 'ApiContactStatuses'
+        );
+    }
 
-} 
+}

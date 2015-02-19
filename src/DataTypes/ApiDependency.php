@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -16,13 +15,15 @@ namespace DotMailer\Api\DataTypes;
  * @property ApiBusinessObjectType type
  * @property XsInt objectId
  */
-final class ApiDependency extends JsonObject {
+final class ApiDependency extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'Type' => 'ApiBusinessObjectType',
-			'ObjectId' => 'XsInt'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'Type' => 'ApiBusinessObjectType',
+            'ObjectId' => 'XsInt'
+        );
+    }
 
 }

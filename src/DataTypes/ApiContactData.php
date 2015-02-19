@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -17,13 +16,15 @@ namespace DotMailer\Api\DataTypes;
  * @property Mixed value
  *
  */
-final class ApiContactData extends JsonObject {
+final class ApiContactData extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'Key' => 'XsString',
-			'Value' => 'Mixed'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'Key' => 'XsString',
+            'Value' => 'Mixed'
+        );
+    }
 
-} 
+}

@@ -1,19 +1,19 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\Rest;
 
 
-class BadRequestException extends Exception {
+class BadRequestException extends Exception
+{
 
-	/** @var int */
-	protected $code = 400;
+    /** @var int */
+    protected $code = 400;
 
 }

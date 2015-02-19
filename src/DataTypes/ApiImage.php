@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -17,14 +16,16 @@ namespace DotMailer\Api\DataTypes;
  * @property XsString name
  * @property XsString path
  */
-final class ApiImage extends JsonObject {
+final class ApiImage extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'Id' => 'XsInt',
-			'Name' => 'XsString',
-			'Path' => 'XsString'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'Id' => 'XsInt',
+            'Name' => 'XsString',
+            'Path' => 'XsString'
+        );
+    }
 
-} 
+}

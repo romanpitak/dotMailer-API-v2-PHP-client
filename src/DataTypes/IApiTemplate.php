@@ -1,9 +1,9 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
 
 namespace DotMailer\Api\DataTypes;
@@ -20,5 +20,6 @@ namespace DotMailer\Api\DataTypes;
  * @property ApiCampaignReplyActions replyAction
  * @property XsString replyToAddress
  */
-interface IApiTemplate extends IDataType {
-} 
+interface IApiTemplate extends IDataType
+{
+}

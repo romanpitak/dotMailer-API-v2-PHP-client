@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -16,13 +15,15 @@ namespace DotMailer\Api\DataTypes;
  * @property XsInt id
  * @property ApiSegmentRefreshStatuses status
  */
-final class ApiSegmentRefresh extends JsonObject {
+final class ApiSegmentRefresh extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'Id' => 'XsInt',
-			'Status' => 'ApiSegmentRefreshStatuses'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'Id' => 'XsInt',
+            'Status' => 'ApiSegmentRefreshStatuses'
+        );
+    }
 
-} 
+}

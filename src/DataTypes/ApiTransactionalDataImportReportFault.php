@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -16,13 +15,15 @@ namespace DotMailer\Api\DataTypes;
  * @property XsString key
  * @property ApiTransactionalDataImportFaultReason reason
  */
-final class ApiTransactionalDataImportReportFault extends JsonObject {
+final class ApiTransactionalDataImportReportFault extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'Key' => 'XsString',
-			'Reason' => 'ApiTransactionalDataImportFaultReason'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'Key' => 'XsString',
+            'Reason' => 'ApiTransactionalDataImportFaultReason'
+        );
+    }
 
-} 
+}

@@ -8,83 +8,91 @@
 
 namespace DotMailer\Api\DataTypes;
 
-abstract class JsonObject extends MagicArray {
+abstract class JsonObject extends MagicArray
+{
 
-	/** @var array */
-	protected $classes;
+    /** @var array */
+    protected $classes;
 
-	/** @var array */
-	protected $outputKeys;
+    /** @var array */
+    protected $outputKeys;
 
-	function __construct($value = null) {
+    function __construct($value = null)
+    {
 
-		foreach ($this->getProperties() as $key => $val) {
-			$offset = $this->convertOffset($key);
-			$this->classes[$offset] = __NAMESPACE__ . '\\' . $val;
-			$this->outputKeys[$offset] = $key;
-		}
+        foreach ($this->getProperties() as $key => $val) {
+            $offset = $this->convertOffset($key);
+            $this->classes[$offset] = __NAMESPACE__ . '\\' . $val;
+            $this->outputKeys[$offset] = $key;
+        }
 
-		parent::__construct($value);
-	}
+        parent::__construct($value);
+    }
 
-	/*
-	 * ========== Abstract ==========
-	 */
+    /*
+     * ========== Abstract ==========
+     */
 
-	/**
-	 * Returns array of magic properties in format "CamelCasePropertyName" => "DataClass"
-	 *
-	 * @return array
-	 */
-	abstract protected function getProperties();
+    /**
+     * Returns array of magic properties in format "CamelCasePropertyName" => "DataClass"
+     *
+     * @return array
+     */
+    abstract protected function getProperties();
 
-	/*
-	 * ========== MagicArray ==========
-	 */
+    /*
+     * ========== MagicArray ==========
+     */
 
-	protected function offsetIsAllowed($offset) {
-		return (bool)array_key_exists($this->convertOffset($offset), $this->classes);
-	}
+    protected function offsetIsAllowed($offset)
+    {
+        return (bool)array_key_exists($this->convertOffset($offset), $this->classes);
+    }
 
-	protected function convertOffset($offset) {
-		return strtolower($offset);
-	}
+    protected function convertOffset($offset)
+    {
+        return strtolower($offset);
+    }
 
-	function convertValue($value, $offset) {
-		if (is_null($value)) {
-			return new Null();
-		}
-		$convertedOffset = $this->convertOffset($offset);
-		$dataClass = $this->classes[$convertedOffset];
-		$convertedValue = new $dataClass($value);
-		return $convertedValue;
-	}
-
-
-	/*
-	 * ========== IDataType ==========
-	 */
-
-	function toJson() {
-		$contents = array();
-		foreach ($this->data as $key => $value) {
-			$outputKey = $this->outputKeys[$key];
-			$contents[] = sprintf('"%s":%s', $outputKey, $value->toJson());
-		}
-		return sprintf("{%s}", implode(",", $contents));
-	}
+    function convertValue($value, $offset)
+    {
+        if (is_null($value)) {
+            return new Null();
+        }
+        $convertedOffset = $this->convertOffset($offset);
+        $dataClass = $this->classes[$convertedOffset];
+        $convertedValue = new $dataClass($value);
+        return $convertedValue;
+    }
 
 
-	/*
-	 * ========== Magic ==========
-	 */
+    /*
+     * ========== IDataType ==========
+     */
 
-	public function __get($name) {
-		return $this->offsetGet($name);
-	}
+    function toJson()
+    {
+        $contents = array();
+        foreach ($this->data as $key => $value) {
+            $outputKey = $this->outputKeys[$key];
+            $contents[] = sprintf('"%s":%s', $outputKey, $value->toJson());
+        }
+        return sprintf("{%s}", implode(",", $contents));
+    }
 
-	public function __set($name, $value) {
-		$this->offsetSet($name, $value);
-	}
+
+    /*
+     * ========== Magic ==========
+     */
+
+    public function __get($name)
+    {
+        return $this->offsetGet($name);
+    }
+
+    public function __set($name, $value)
+    {
+        $this->offsetSet($name, $value);
+    }
 
 }

@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -21,18 +20,20 @@ namespace DotMailer\Api\DataTypes;
  * @property ApiSplitTestSendOptions SplitTestOptions
  * @property ApiCampaignSendStatuses Status
  */
-final class ApiCampaignSend extends JsonObject {
+final class ApiCampaignSend extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'Id' => 'Guid',
-			'CampaignId' => 'XsInt',
-			'AddressBookIds' => 'Int32List',
-			'ContactIds' => 'Int32List',
-			'SendDate' => 'XsDateTime',
-			'SplitTestOptions' => 'ApiSplitTestSendOptions',
-			'Status' => 'ApiCampaignSendStatuses'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'Id' => 'Guid',
+            'CampaignId' => 'XsInt',
+            'AddressBookIds' => 'Int32List',
+            'ContactIds' => 'Int32List',
+            'SendDate' => 'XsDateTime',
+            'SplitTestOptions' => 'ApiSplitTestSendOptions',
+            'Status' => 'ApiCampaignSendStatuses'
+        );
+    }
 
-} 
+}

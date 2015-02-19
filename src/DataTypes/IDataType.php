@@ -1,29 +1,29 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
+
 namespace DotMailer\Api\DataTypes;
 
-interface IDataType {
+interface IDataType
+{
 
-	/**
-	 * @return string
-	 */
-	public function __toString();
+    /**
+     * @return string
+     */
+    public function __toString();
 
-	/**
-	 * @return array
-	 */
-	public function toArray();
+    /**
+     * @return array
+     */
+    public function toArray();
 
-	/**
-	 * @return string
-	 */
-	public function toJson();
+    /**
+     * @return string
+     */
+    public function toJson();
 
 }
-

@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -17,13 +16,15 @@ namespace DotMailer\Api\DataTypes;
  * @property XsString fileName
  * @property XsBase64Binary data
  */
-class ApiFileMedia extends JsonObject {
+class ApiFileMedia extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'FileName' => 'XsString',
-			'Data' => 'XsBase64Binary'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'FileName' => 'XsString',
+            'Data' => 'XsBase64Binary'
+        );
+    }
 
 }

@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -23,19 +22,21 @@ namespace DotMailer\Api\DataTypes;
  * @property XsDateTime dateReplied
  * @property ApiCampaignReplyTypes replyType
  */
-final class ApiCampaignContactReply extends JsonObject {
+final class ApiCampaignContactReply extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'ContactId' => 'XsInt',
-			'Email' => 'XsString',
-			'FromAddress' => 'XsString',
-			'ToAddress' => 'XsString',
-			'Subject' => 'XsString',
-			'Message' => 'XsString',
-			'IsHtml' => 'XsBoolean',
-			'DateReplied' => 'XsDateTime',
-			'ReplyType' => 'ApiCampaignReplyTypes'
-		);
-	}
-} 
+    protected function getProperties()
+    {
+        return array(
+            'ContactId' => 'XsInt',
+            'Email' => 'XsString',
+            'FromAddress' => 'XsString',
+            'ToAddress' => 'XsString',
+            'Subject' => 'XsString',
+            'Message' => 'XsString',
+            'IsHtml' => 'XsBoolean',
+            'DateReplied' => 'XsDateTime',
+            'ReplyType' => 'ApiCampaignReplyTypes'
+        );
+    }
+}

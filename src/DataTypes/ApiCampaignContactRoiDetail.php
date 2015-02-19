@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -21,17 +20,19 @@ namespace DotMailer\Api\DataTypes;
  * @property XsDateTime dateEntered
  *
  */
-final class ApiCampaignContactRoiDetail extends JsonObject {
+final class ApiCampaignContactRoiDetail extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'ContactId' => 'XsInt',
-			'Email' => 'XsString',
-			'MarkerName' => 'XsString',
-			'DataType' => 'ApiRoiDetailDataTypes',
-			'Value' => 'Mixed',
-			'DateEntered' => 'XsDateTime'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'ContactId' => 'XsInt',
+            'Email' => 'XsString',
+            'MarkerName' => 'XsString',
+            'DataType' => 'ApiRoiDetailDataTypes',
+            'Value' => 'Mixed',
+            'DateEntered' => 'XsDateTime'
+        );
+    }
 
-} 
+}

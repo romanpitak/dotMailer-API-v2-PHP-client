@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -18,15 +17,17 @@ namespace DotMailer\Api\DataTypes;
  * @property XsInt totalRejected
  * @property ApiTransactionalDataImportReportFaultList faults
  */
-final class ApiTransactionalDataImportReport extends JsonObject {
+final class ApiTransactionalDataImportReport extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'TotalItems' => 'XsInt',
-			'TotalImported' => 'XsInt',
-			'TotalRejected' => 'XsInt',
-			'Faults' => 'ApiTransactionalDataImportReportFaultList'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'TotalItems' => 'XsInt',
+            'TotalImported' => 'XsInt',
+            'TotalRejected' => 'XsInt',
+            'Faults' => 'ApiTransactionalDataImportReportFaultList'
+        );
+    }
 
 }

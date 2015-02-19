@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -20,15 +19,17 @@ namespace DotMailer\Api\DataTypes;
  * @property XsDateTime dateCreated
  * @property XsDateTime dateModified
  */
-final class ApiDocument extends JsonObject {
-	protected function getProperties() {
-		return array(
-			'Id' => 'XsInt',
-			'Name' => 'XsString',
-			'FileName' => 'XsString',
-			'FileSize' => 'XsInt',
-			'DateCreated' => 'XsDateTime',
-			'DateModified' => 'XsDateTime'
-		);
-	}
-} 
+final class ApiDocument extends JsonObject
+{
+    protected function getProperties()
+    {
+        return array(
+            'Id' => 'XsInt',
+            'Name' => 'XsString',
+            'FileName' => 'XsString',
+            'FileSize' => 'XsInt',
+            'DateCreated' => 'XsDateTime',
+            'DateModified' => 'XsDateTime'
+        );
+    }
+}

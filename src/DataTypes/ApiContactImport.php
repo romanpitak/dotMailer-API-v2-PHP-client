@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -16,13 +15,15 @@ namespace DotMailer\Api\DataTypes;
  * @property Guid id
  * @property ApiContactImportStatuses status
  */
-final class ApiContactImport extends JsonObject {
+final class ApiContactImport extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'Id' => 'Guid',
-			'Status' => 'ApiContactImportStatuses'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'Id' => 'Guid',
+            'Status' => 'ApiContactImportStatuses'
+        );
+    }
 
-} 
+}

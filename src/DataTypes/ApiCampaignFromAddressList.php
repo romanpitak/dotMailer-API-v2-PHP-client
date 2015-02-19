@@ -1,20 +1,21 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
 
-final class ApiCampaignFromAddressList extends JsonArray {
+final class ApiCampaignFromAddressList extends JsonArray
+{
 
-	protected function getDataClass() {
-		return 'ApiCampaignFromAddress';
-	}
+    protected function getDataClass()
+    {
+        return 'ApiCampaignFromAddress';
+    }
 
-} 
+}

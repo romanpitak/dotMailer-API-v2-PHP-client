@@ -10,10 +10,12 @@
 namespace DotMailer\Api\DataTypes;
 
 
-final class ApiAccountPropertyList extends JsonArray {
+final class ApiAccountPropertyList extends JsonArray
+{
 
-	function getDataClass() {
-		return 'ApiAccountProperty';
-	}
+    function getDataClass()
+    {
+        return 'ApiAccountProperty';
+    }
 
 }

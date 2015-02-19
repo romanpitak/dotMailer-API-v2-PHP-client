@@ -9,6 +9,7 @@
 
 namespace DotMailer\Api\Rest;
 
-class RestClientException extends Exception {
+class RestClientException extends Exception
+{
 
-} 
+}

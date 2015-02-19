@@ -1,58 +1,63 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
+
 namespace DotMailer\Api\DataTypes;
 
-abstract class Enum implements IDataType {
+abstract class Enum implements IDataType
+{
 
-	/** @var IDataType */
-	protected $value;
+    /** @var IDataType */
+    protected $value;
 
-	public function __construct($value) {
-		$valueClass = __NAMESPACE__ . '\\' . $this->getDataClass();
-		$this->value = new $valueClass($value);
-		if (!in_array($this->value, $this->getPossibleValues(), false)) {
-			throw new InvalidValueException('Invalid value');
-		}
-	}
+    public function __construct($value)
+    {
+        $valueClass = __NAMESPACE__ . '\\' . $this->getDataClass();
+        $this->value = new $valueClass($value);
+        if (!in_array($this->value, $this->getPossibleValues(), false)) {
+            throw new InvalidValueException('Invalid value');
+        }
+    }
 
-	/*
-	 * ========== Abstract ==========
-	 */
+    /*
+     * ========== Abstract ==========
+     */
 
-	/**
-	 * Get data class name
-	 *
-	 * @return string Data class name
-	 */
-	abstract protected function getDataClass();
+    /**
+     * Get data class name
+     *
+     * @return string Data class name
+     */
+    abstract protected function getDataClass();
 
-	/**
-	 * Return an array of possible enum values
-	 *
-	 * @return array
-	 */
-	abstract protected function getPossibleValues();
+    /**
+     * Return an array of possible enum values
+     *
+     * @return array
+     */
+    abstract protected function getPossibleValues();
 
-	/*
-	 * ========== IDataTypes ==========
-	 */
+    /*
+     * ========== IDataTypes ==========
+     */
 
-	public function __toString() {
-		return (string) $this->value;
-	}
+    public function __toString()
+    {
+        return (string)$this->value;
+    }
 
-	public function toArray() {
-		return $this->value->toArray();
-	}
+    public function toArray()
+    {
+        return $this->value->toArray();
+    }
 
-	public function toJson() {
-		return $this->value->toJson();
-	}
+    public function toJson()
+    {
+        return $this->value->toJson();
+    }
 
 }

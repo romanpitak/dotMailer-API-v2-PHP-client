@@ -1,12 +1,11 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Roman Piták <roman@pitak.net>
- * 
+ *
  */
- 
- 
+
 
 namespace DotMailer\Api\DataTypes;
 
@@ -22,18 +21,20 @@ namespace DotMailer\Api\DataTypes;
  * @property XsString keyword
  *
  */
-final class ApiCampaignContactClick extends JsonObject {
+final class ApiCampaignContactClick extends JsonObject
+{
 
-	protected function getProperties() {
-		return array(
-			'ContactId' => 'XsInt',
-			'Email' => 'XsString',
-			'Url' => 'XsString',
-			'IpAddress' => 'XsString',
-			'UserAgent' => 'XsString',
-			'DateClicked' => 'XsDateTime',
-			'Keyword' => 'XsString'
-		);
-	}
+    protected function getProperties()
+    {
+        return array(
+            'ContactId' => 'XsInt',
+            'Email' => 'XsString',
+            'Url' => 'XsString',
+            'IpAddress' => 'XsString',
+            'UserAgent' => 'XsString',
+            'DateClicked' => 'XsDateTime',
+            'Keyword' => 'XsString'
+        );
+    }
 
-} 
+}
