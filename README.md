@@ -1,4 +1,5 @@
 # dotMailer API v2 PHP client
+
 [![Latest Stable Version](https://img.shields.io/packagist/v/romanpitak/dotmailer-api-v2-client.svg)](https://packagist.org/packages/romanpitak/dotmailer-api-v2-client)
 [![Total Downloads](https://img.shields.io/packagist/dt/romanpitak/dotmailer-api-v2-client.svg)](https://packagist.org/packages/romanpitak/dotmailer-api-v2-client) 
 [![License](https://img.shields.io/packagist/l/romanpitak/dotmailer-api-v2-client.svg)](https://packagist.org/packages/romanpitak/dotmailer-api-v2-client)
@@ -14,6 +15,7 @@ PHP client library for the dotMailer v2 (REST) API with **multiple accounts supp
 Type hinting support for objects and resources (not yet for arrays).
 
 ## Installation
+
 The best way to install is to use the [Composer](https://getcomposer.org/) dependency manager.
 
 ```
@@ -21,6 +23,7 @@ php composer.phar require romanpitak/dotmailer-api-v2-client
 ```
 
 ## Usage
+
 ### Single account usage
 
 ```php
@@ -137,6 +140,7 @@ $account->UpdateCampaign($campaign);
 ```
 
 ## TODO
+
 - Refactor Simple data types
 - Split IResources into sub-interfaces
 - Interfaces for data types
