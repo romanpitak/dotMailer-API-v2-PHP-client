@@ -166,7 +166,7 @@ final class Resources implements IResources
     public function GetAddressBookContactsUnsubscribedSinceDate($addressBookId, $date, $select = 1000, $skip = 0)
     {
         $url = sprintf("address-books/%s/contacts/unsubscribed-since/%s?select=%s&skip=%s", $addressBookId, $date, $select, $skip);
-        new ApiContactSuppressionList($this->execute($url));
+        return new ApiContactSuppressionList($this->execute($url));
     }
 
     public function GetAddressBookContacts($addressBookId, $withFullData = false, $select = 1000, $skip = 0)

@@ -182,6 +182,7 @@ interface IResources
      * @param string|XsDateTime $date
      * @param int $select
      * @param int $skip
+     * @return ApiContactSuppressionList
      */
     public function GetAddressBookContactsUnsubscribedSinceDate($addressBookId, $date, $select = 1000, $skip = 0);
 
