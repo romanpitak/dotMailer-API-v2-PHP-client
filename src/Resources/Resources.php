@@ -112,7 +112,7 @@ final class Resources implements IResources
     public function GetAddressBookCampaigns($addressBookId, $select = 1000, $skip = 0)
     {
         $url = sprintf("address-books/%s/campaigns?select=%s&skip=%s", $addressBookId, $select, $skip);
-        new ApiCampaignList($this->execute($url));
+        return new ApiCampaignList($this->execute($url));
     }
 
     public function DeleteAddressBookContacts($addressBookId)

@@ -97,6 +97,7 @@ interface IResources
      * @param int|XsInt $addressBookId
      * @param int $select
      * @param int $skip
+     * @return ApiCampaignList
      */
     public function GetAddressBookCampaigns($addressBookId, $select = 1000, $skip = 0);
 
