@@ -9,7 +9,6 @@
 
 namespace DotMailer\Api\Resources;
 
-
 use DotMailer\Api\DataTypes\ApiAccount;
 use DotMailer\Api\DataTypes\ApiAddressBook;
 use DotMailer\Api\DataTypes\ApiAddressBookList;
@@ -56,17 +55,13 @@ use DotMailer\Api\DataTypes\ApiTransactionalDataImportReport;
 use DotMailer\Api\DataTypes\ApiTransactionalDataList;
 use DotMailer\Api\DataTypes\Guid;
 use DotMailer\Api\DataTypes\IApiTemplate;
-use DotMailer\Api\DataTypes\Int32List;
-use DotMailer\Api\DataTypes\XsBoolean;
 use DotMailer\Api\DataTypes\XsDateTime;
 use DotMailer\Api\DataTypes\XsInt;
 use DotMailer\Api\DataTypes\XsString;
 use DotMailer\Api\Rest\IClient;
 
-
 final class Resources implements IResources
 {
-
     /** @var IClient */
     private $restClient;
 
@@ -489,7 +484,7 @@ final class Resources implements IResources
     public function PostContactsTransactionalDataImport($collectionName, ApiTransactionalDataList $apiTransactionalDataList)
     {
         $url = sprintf("contacts/transactional-data/import/%s", $collectionName);
-        return new ApiTransactionalDataImport($this->execute($url, 'POST'));
+        return new ApiTransactionalDataImport($this->execute($url, 'POST', $apiTransactionalDataList->toJson()));
     }
 
     public function GetContactsTransactionalDataImportByImportId($importId)
@@ -674,5 +669,4 @@ final class Resources implements IResources
         $url = sprintf("templates?select=%s&skip=%s", $select, $skip);
         return new ApiTemplateList($this->execute($url));
     }
-
 }

@@ -14,9 +14,9 @@ final class ApiTransactionalDataImportStatuses extends Enum
 {
 
     const NOT_STARTED = 'NotStarted';
-    const NOT_FINISHED = 'NotStarted';
-    const FINISHED = 'NotStarted';
-    const FAILED = 'NotStarted';
+    const NOT_FINISHED = 'NotFinished';
+    const FINISHED = 'Finished';
+    const FAILED = 'Failed';
     const NOT_AVAILABLE_IN_THIS_VERSION = 'NotAvailableInThisVersion';
 
     protected function getDataClass()
