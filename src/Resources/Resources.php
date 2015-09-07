@@ -469,6 +469,12 @@ final class Resources implements IResources
         return new ApiTransactionalData($this->execute($url, 'POST', $apiTransactionalData->toJson()));
     }
 
+    public function PostContactsTransactionalDataUpdate($collectionName, $importId, ApiJsonData $apiJsonData)
+    {
+        $url = sprintf("contacts/transactional-data/%s/%s", $collectionName, $importId);
+        return new ApiTransactionalData($this->execute($url, 'POST', $apiJsonData>toJson()));
+    }
+
     public function DeleteContactsTransactionalData($collectionName, $key)
     {
         $url = sprintf("contacts/transactional-data/%s/%s", $collectionName, $key);
