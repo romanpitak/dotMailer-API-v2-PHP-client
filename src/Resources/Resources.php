@@ -43,6 +43,8 @@ use DotMailer\Api\DataTypes\ApiFileMedia;
 use DotMailer\Api\DataTypes\ApiImage;
 use DotMailer\Api\DataTypes\ApiImageFolder;
 use DotMailer\Api\DataTypes\ApiImageFolderList;
+use DotMailer\Api\DataTypes\ApiProgramEnrolment;
+use DotMailer\Api\DataTypes\ApiProgramEnrolmentList;
 use DotMailer\Api\DataTypes\ApiResubscribeResult;
 use DotMailer\Api\DataTypes\ApiSegmentList;
 use DotMailer\Api\DataTypes\ApiSegmentRefresh;
@@ -601,6 +603,20 @@ final class Resources implements IResources
     {
         $url = sprintf("image-folders/%s", $folderId);
         return new ApiImageFolder($this->execute($url, 'POST', $apiImageFolder->toJson()));
+    }
+
+    /*
+    * ========== program enrolments ==========
+    */
+
+    /**
+     * Creates a new enrolment.
+     *
+     * @param ApiProgramEnrolment $apiProgramEnrolment
+     */
+    public function PostProgramsEnrolments(ApiProgramEnrolment $apiProgramEnrolment)
+    {
+        $this->execute('programs/enrolments', 'POST', $apiProgramEnrolment->toJson());
     }
 
     /*

@@ -44,6 +44,8 @@ use DotMailer\Api\DataTypes\ApiFileMedia;
 use DotMailer\Api\DataTypes\ApiImage;
 use DotMailer\Api\DataTypes\ApiImageFolder;
 use DotMailer\Api\DataTypes\ApiImageFolderList;
+use DotMailer\Api\DataTypes\ApiProgramEnrolment;
+use DotMailer\Api\DataTypes\ApiProgramEnrolmentList;
 use DotMailer\Api\DataTypes\ApiResubscribeResult;
 use DotMailer\Api\DataTypes\ApiSegmentList;
 use DotMailer\Api\DataTypes\ApiSegmentRefresh;
@@ -864,6 +866,17 @@ interface IResources
      * @return ApiImageFolder
      */
     public function PostImageFolder(XsInt $folderId, ApiImageFolder $apiImageFolder);
+
+    /*
+    * ========== program enrolments ==========
+    */
+
+    /**
+     * Creates a new enrolment.
+     *
+     * @param ApiProgramEnrolment $apiProgramEnrolment
+     */
+    public function PostProgramsEnrolments(ApiProgramEnrolment $apiProgramEnrolment);
 
     /*
      * ========== segments ==========
