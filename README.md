@@ -31,7 +31,7 @@ php composer.phar require romanpitak/dotmailer-api-v2-client
 require_once('vendor/autoload.php');
 
 $credentials = array(
-    Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
+    Container::USERNAME => 'apiuser-XXXXXXXXXXXX@apiconnector.com',
     Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
 );
 
