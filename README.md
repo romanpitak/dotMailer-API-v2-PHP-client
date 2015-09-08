@@ -48,16 +48,16 @@ require_once('vendor/autoload.php');
 
 $credentials = array(
     'master' => array(
-        Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
+        Container::USERNAME => 'apiuser-XXXXXXXXXXXX@apiconnector.com',
         Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
     ),
     'group1' => array(
         'g1-account1' => array(
-            Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
+            Container::USERNAME => 'apiuser-XXXXXXXXXXXX@apiconnector.com',
             Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
         ),
         'g1-account2' => array(
-            Container::USERNAME =>  'apiuser-XXXXXXXXXXXX@apiconnector.com',
+            Container::USERNAME => 'apiuser-XXXXXXXXXXXX@apiconnector.com',
             Container::PASSWORD => 'YYYYYYYYYYYYYYYYYYYYYYYYYYY'
         )
     )
