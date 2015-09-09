@@ -17,8 +17,8 @@ namespace DotMailer\Api\DataTypes;
  * @property XsInt ProgramId
  * @property ApiProgramEnrolmentStatus Status
  * @property XsDateTime DateCreated
- * @property XsInt Contacts
- * @property XsInt AddressBooks
+ * @property Int32List Contacts
+ * @property Int32List AddressBooks
  */
 final class ApiProgramEnrolment extends JsonObject
 {
@@ -29,8 +29,8 @@ final class ApiProgramEnrolment extends JsonObject
             'ProgramId' => 'XsInt',
             'Status' => 'ApiProgramEnrolmentStatus',
             'DateCreated' => 'XsDateTime',
-            'Contacts' => 'XsInt',
-            'AddressBooks' => 'XsInt'
+            'Contacts' => 'Int32List',
+            'AddressBooks' => 'Int32List'
         );
     }
 
