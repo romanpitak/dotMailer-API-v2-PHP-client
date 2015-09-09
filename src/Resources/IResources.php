@@ -44,6 +44,10 @@ use DotMailer\Api\DataTypes\ApiFileMedia;
 use DotMailer\Api\DataTypes\ApiImage;
 use DotMailer\Api\DataTypes\ApiImageFolder;
 use DotMailer\Api\DataTypes\ApiImageFolderList;
+use DotMailer\Api\DataTypes\ApiProgram;
+use DotMailer\Api\DataTypes\ApiProgramList;
+use DotMailer\Api\DataTypes\ApiProgramEnrolment;
+use DotMailer\Api\DataTypes\ApiProgramEnrolmentList;
 use DotMailer\Api\DataTypes\ApiResubscribeResult;
 use DotMailer\Api\DataTypes\ApiSegmentList;
 use DotMailer\Api\DataTypes\ApiSegmentRefresh;
@@ -864,6 +868,60 @@ interface IResources
      * @return ApiImageFolder
      */
     public function PostImageFolder(XsInt $folderId, ApiImageFolder $apiImageFolder);
+
+    /*
+    * ========== programs and enrolments ==========
+    */
+
+    /**
+     * Gets a program by id.
+     *
+     * @param int|XsInt $programId
+     * @return ApiProgram
+     */
+    public function GetProgramById(XsInt $programId);
+
+    /**
+     * Creates a new program enrolment.
+     *
+     * @param ApiProgramEnrolment $apiProgramEnrolment
+     */
+    public function PostProgramsEnrolments(ApiProgramEnrolment $apiProgramEnrolment);
+
+    /**
+     * Gets an enrolment by id.
+     *
+     * @param string|Guid $enrolmentId
+     * @return ApiProgramEnrolment
+     */
+    public function GetProgramsEnrolmentByEnrolmentId($enrolmentId);
+
+    /**
+     * Gets faults by an enrolment id.
+     *
+     * @param string|Guid $enrolmentId
+     * @return ApiProgramEnrolment
+     */
+    public function GetProgramsEnrolmentReportFaults($enrolmentId);
+
+    /**
+     * Gets enrolments by status.
+     *
+     * @param string|XsString $status
+     * @param int $select
+     * @param int $skip
+     * @return ApiProgramEnrolmentList
+     */
+    public function GetProgramsEnrolmentByStatus($status, $select = 1000, $skip = 0);
+
+    /**
+     * Gets all programs.
+     *
+     * @param int $select
+     * @param int $skip
+     * @return ApiProgramList
+     */
+    public function GetPrograms($select = 1000, $skip = 0);
 
     /*
      * ========== segments ==========

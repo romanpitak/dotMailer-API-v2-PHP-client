@@ -43,6 +43,10 @@ use DotMailer\Api\DataTypes\ApiFileMedia;
 use DotMailer\Api\DataTypes\ApiImage;
 use DotMailer\Api\DataTypes\ApiImageFolder;
 use DotMailer\Api\DataTypes\ApiImageFolderList;
+use DotMailer\Api\DataTypes\ApiProgram;
+use DotMailer\Api\DataTypes\ApiProgramList;
+use DotMailer\Api\DataTypes\ApiProgramEnrolment;
+use DotMailer\Api\DataTypes\ApiProgramEnrolmentList;
 use DotMailer\Api\DataTypes\ApiResubscribeResult;
 use DotMailer\Api\DataTypes\ApiSegmentList;
 use DotMailer\Api\DataTypes\ApiSegmentRefresh;
@@ -601,6 +605,45 @@ final class Resources implements IResources
     {
         $url = sprintf("image-folders/%s", $folderId);
         return new ApiImageFolder($this->execute($url, 'POST', $apiImageFolder->toJson()));
+    }
+
+    /*
+    * ========== programs and enrolments ==========
+    */
+
+    public function GetProgramById(XsInt $programId)
+    {
+        $url = sprintf("programs/%s", $programId);
+        return new ApiProgram($this->execute($url));
+    }
+
+    public function PostProgramsEnrolments(ApiProgramEnrolment $apiProgramEnrolment)
+    {
+        $this->execute('programs/enrolments', 'POST', $apiProgramEnrolment->toJson());
+    }
+
+    public function GetProgramsEnrolmentByEnrolmentId($enrolmentId)
+    {
+        $url = sprintf("programs/enrolments/%s", $enrolmentId);
+        return new ApiProgramEnrolment($this->execute($url));
+    }
+
+    public function GetProgramsEnrolmentReportFaults($enrolmentId)
+    {
+        $url = sprintf("programs/enrolments/%s/report-faults", $enrolmentId);
+        return new ApiProgramEnrolment($this->execute($url));
+    }
+
+    public function GetProgramsEnrolmentByStatus($status, $select = 1000, $skip = 0)
+    {
+        $url = sprintf("programs/enrolments/%s/?select=%s&skip=%s", $status, $select, $skip);
+        return new ApiProgramEnrolmentList($this->execute($url));
+    }
+
+    public function GetPrograms($select = 1000, $skip = 0)
+    {
+        $url = sprintf("programs/?select=%s&skip=%s", $select, $skip);
+        return new ApiProgramList($this->execute($url));
     }
 
     /*
