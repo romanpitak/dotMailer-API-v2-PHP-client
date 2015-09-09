@@ -611,38 +611,39 @@ final class Resources implements IResources
     * ========== programs and enrolments ==========
     */
 
-    /**
-     * Gets a program by id.
-     *
-     * @param XsInt $programId
-     * @return ApiProgram
-     */
     public function GetProgramById(XsInt $programId)
     {
         $url = sprintf("programs/%s", $programId);
         return new ApiProgram($this->execute($url));
     }
 
-    /**
-     * Creates a new enrolment.
-     *
-     * @param ApiProgramEnrolment $apiProgramEnrolment
-     */
     public function PostProgramsEnrolments(ApiProgramEnrolment $apiProgramEnrolment)
     {
         $this->execute('programs/enrolments', 'POST', $apiProgramEnrolment->toJson());
     }
 
-    /**
-     * Gets an enrolment by id.
-     *
-     * @param XsInt $enrolmentId
-     * @return ApiProgramEnrolment
-     */
-    public function GetProgramsEnrolmentByEnrolmentId(XsInt $enrolmentId)
+    public function GetProgramsEnrolmentByEnrolmentId($enrolmentId)
     {
         $url = sprintf("programs/enrolments/%s", $enrolmentId);
         return new ApiProgramEnrolment($this->execute($url));
+    }
+
+    public function GetProgramsEnrolmentReportFaults($enrolmentId)
+    {
+        $url = sprintf("programs/enrolments/%s/report-faults", $enrolmentId);
+        return new ApiProgramEnrolment($this->execute($url));
+    }
+
+    public function GetProgramsEnrolmentByStatus($status, $select = 1000, $skip = 0)
+    {
+        $url = sprintf("programs/enrolments/%s/?select=%s&skip=%s", $status, $select, $skip);
+        return new ApiProgramEnrolmentList($this->execute($url));
+    }
+
+    public function GetPrograms($select = 1000, $skip = 0)
+    {
+        $url = sprintf("programs/?select=%s&skip=%s", $select, $skip);
+        return new ApiProgramList($this->execute($url));
     }
 
     /*

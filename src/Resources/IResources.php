@@ -876,7 +876,7 @@ interface IResources
     /**
      * Gets a program by id.
      *
-     * @param XsInt $programId
+     * @param int|XsInt $programId
      * @return ApiProgram
      */
     public function GetProgramById(XsInt $programId);
@@ -891,10 +891,37 @@ interface IResources
     /**
      * Gets an enrolment by id.
      *
-     * @param XsInt $enrolmentId
+     * @param string|Guid $enrolmentId
      * @return ApiProgramEnrolment
      */
-    public function GetProgramsEnrolmentByEnrolmentId(XsInt $enrolmentId);
+    public function GetProgramsEnrolmentByEnrolmentId($enrolmentId);
+
+    /**
+     * Gets faults by an enrolment id.
+     *
+     * @param string|Guid $enrolmentId
+     * @return ApiProgramEnrolment
+     */
+    public function GetProgramsEnrolmentReportFaults($enrolmentId);
+
+    /**
+     * Gets enrolments by status.
+     *
+     * @param string|XsString $status
+     * @param int $select
+     * @param int $skip
+     * @return ApiProgramEnrolmentList
+     */
+    public function GetProgramsEnrolmentByStatus($status, $select = 1000, $skip = 0);
+
+    /**
+     * Gets all programs.
+     *
+     * @param int $select
+     * @param int $skip
+     * @return ApiProgramList
+     */
+    public function GetPrograms($select = 1000, $skip = 0);
 
     /*
      * ========== segments ==========
