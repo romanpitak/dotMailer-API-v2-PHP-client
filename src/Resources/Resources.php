@@ -43,6 +43,8 @@ use DotMailer\Api\DataTypes\ApiFileMedia;
 use DotMailer\Api\DataTypes\ApiImage;
 use DotMailer\Api\DataTypes\ApiImageFolder;
 use DotMailer\Api\DataTypes\ApiImageFolderList;
+use DotMailer\Api\DataTypes\ApiProgram;
+use DotMailer\Api\DataTypes\ApiProgramList;
 use DotMailer\Api\DataTypes\ApiProgramEnrolment;
 use DotMailer\Api\DataTypes\ApiProgramEnrolmentList;
 use DotMailer\Api\DataTypes\ApiResubscribeResult;
@@ -606,8 +608,20 @@ final class Resources implements IResources
     }
 
     /*
-    * ========== program enrolments ==========
+    * ========== programs and enrolments ==========
     */
+
+    /**
+     * Gets a program by id.
+     *
+     * @param XsInt $programId
+     * @return ApiProgram
+     */
+    public function GetProgramById(XsInt $programId)
+    {
+        $url = sprintf("programs/%s", $programId);
+        return new ApiProgram($this->execute($url));
+    }
 
     /**
      * Creates a new enrolment.
@@ -617,6 +631,18 @@ final class Resources implements IResources
     public function PostProgramsEnrolments(ApiProgramEnrolment $apiProgramEnrolment)
     {
         $this->execute('programs/enrolments', 'POST', $apiProgramEnrolment->toJson());
+    }
+
+    /**
+     * Gets an enrolment by id.
+     *
+     * @param XsInt $enrolmentId
+     * @return ApiProgramEnrolment
+     */
+    public function GetProgramsEnrolmentByEnrolmentId(XsInt $enrolmentId)
+    {
+        $url = sprintf("programs/enrolments/%s", $enrolmentId);
+        return new ApiProgramEnrolment($this->execute($url));
     }
 
     /*

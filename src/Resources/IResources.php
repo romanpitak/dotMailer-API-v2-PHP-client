@@ -44,6 +44,8 @@ use DotMailer\Api\DataTypes\ApiFileMedia;
 use DotMailer\Api\DataTypes\ApiImage;
 use DotMailer\Api\DataTypes\ApiImageFolder;
 use DotMailer\Api\DataTypes\ApiImageFolderList;
+use DotMailer\Api\DataTypes\ApiProgram;
+use DotMailer\Api\DataTypes\ApiProgramList;
 use DotMailer\Api\DataTypes\ApiProgramEnrolment;
 use DotMailer\Api\DataTypes\ApiProgramEnrolmentList;
 use DotMailer\Api\DataTypes\ApiResubscribeResult;
@@ -868,15 +870,31 @@ interface IResources
     public function PostImageFolder(XsInt $folderId, ApiImageFolder $apiImageFolder);
 
     /*
-    * ========== program enrolments ==========
+    * ========== programs and enrolments ==========
     */
 
     /**
-     * Creates a new enrolment.
+     * Gets a program by id.
+     *
+     * @param XsInt $programId
+     * @return ApiProgram
+     */
+    public function GetProgramById(XsInt $programId);
+
+    /**
+     * Creates a new program enrolment.
      *
      * @param ApiProgramEnrolment $apiProgramEnrolment
      */
     public function PostProgramsEnrolments(ApiProgramEnrolment $apiProgramEnrolment);
+
+    /**
+     * Gets an enrolment by id.
+     *
+     * @param XsInt $enrolmentId
+     * @return ApiProgramEnrolment
+     */
+    public function GetProgramsEnrolmentByEnrolmentId(XsInt $enrolmentId);
 
     /*
      * ========== segments ==========
