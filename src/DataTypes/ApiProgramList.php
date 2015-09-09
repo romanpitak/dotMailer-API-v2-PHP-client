@@ -10,12 +10,12 @@
 namespace DotMailer\Api\DataTypes;
 
 
-final class ApiProgramEnrolmentList extends JsonArray
+final class ApiProgramList extends JsonArray
 {
 
     protected function getDataClass()
     {
-        return 'ApiProgramEnrolment';
+        return 'ApiProgram';
     }
 
 }

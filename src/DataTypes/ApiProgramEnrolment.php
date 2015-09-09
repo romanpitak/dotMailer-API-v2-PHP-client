@@ -1,8 +1,8 @@
 <?php
 /**
  *
- *
  * @author Roman Piták <roman@pitak.net>
+ * @author Alexander Turiak <alex@hexbrain.com>
  *
  */
 
@@ -13,7 +13,7 @@ namespace DotMailer\Api\DataTypes;
 /**
  * Class ApiProgramEnrolment
  *
- * @property Guid Id
+ * @property Guid ID
  * @property XsInt ProgramId
  * @property ApiProgramEnrolmentStatus Status
  * @property XsDateTime DateCreated
@@ -25,7 +25,7 @@ final class ApiProgramEnrolment extends JsonObject
     protected function getProperties()
     {
         return array(
-            'Id' => 'Guid',
+            'ID' => 'Guid',
             'ProgramId' => 'XsInt',
             'Status' => 'ApiProgramEnrolmentStatus',
             'DateCreated' => 'XsDateTime',
@@ -33,4 +33,5 @@ final class ApiProgramEnrolment extends JsonObject
             'AddressBooks' => 'XsInt'
         );
     }
+
 }

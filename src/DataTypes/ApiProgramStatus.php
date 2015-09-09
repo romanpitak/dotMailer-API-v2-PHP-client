@@ -10,11 +10,13 @@
 namespace DotMailer\Api\DataTypes;
 
 
-final class ApiProgramEnrolmentStatus extends Enum
+final class ApiProgramStatus extends Enum
 {
 
-    const PROCESSING = 'Processing';
-    const FINISHED   = 'Finished';
+    const DRAFT       = 'Draft';
+    const DEACTIVATED = 'Deactivated';
+    const ACTIVE      = 'Active';
+    const READONLY    = 'ReadOnly';
     const NOT_AVAILABLE_IN_THIS_VERSION = 'NotAvailableInThisVersion';
 
 
@@ -30,8 +32,10 @@ final class ApiProgramEnrolmentStatus extends Enum
     protected function getPossibleValues()
     {
         return array(
-            self::PROCESSING,
-            self::FINISHED,
+            self::DRAFT,
+            self::DEACTIVATED,
+            self::ACTIVE,
+            self::READONLY,
             self::NOT_AVAILABLE_IN_THIS_VERSION
         );
     }
