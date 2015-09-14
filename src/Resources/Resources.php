@@ -43,6 +43,7 @@ use DotMailer\Api\DataTypes\ApiFileMedia;
 use DotMailer\Api\DataTypes\ApiImage;
 use DotMailer\Api\DataTypes\ApiImageFolder;
 use DotMailer\Api\DataTypes\ApiImageFolderList;
+use DotMailer\Api\DataTypes\ApiJsonData;
 use DotMailer\Api\DataTypes\ApiResubscribeResult;
 use DotMailer\Api\DataTypes\ApiSegmentList;
 use DotMailer\Api\DataTypes\ApiSegmentRefresh;
@@ -467,6 +468,12 @@ final class Resources implements IResources
     {
         $url = sprintf("contacts/transactional-data/%s", $collectionName);
         return new ApiTransactionalData($this->execute($url, 'POST', $apiTransactionalData->toJson()));
+    }
+
+    public function PostContactsTransactionalDataUpdate($collectionName, $importId, ApiJsonData $apiJsonData)
+    {
+        $url = sprintf("contacts/transactional-data/%s/%s", $collectionName, $importId);
+        return new ApiTransactionalData($this->execute($url, 'POST', $apiJsonData->toJson()));
     }
 
     public function DeleteContactsTransactionalData($collectionName, $key)

@@ -44,6 +44,7 @@ use DotMailer\Api\DataTypes\ApiFileMedia;
 use DotMailer\Api\DataTypes\ApiImage;
 use DotMailer\Api\DataTypes\ApiImageFolder;
 use DotMailer\Api\DataTypes\ApiImageFolderList;
+use DotMailer\Api\DataTypes\ApiJsonData;
 use DotMailer\Api\DataTypes\ApiResubscribeResult;
 use DotMailer\Api\DataTypes\ApiSegmentList;
 use DotMailer\Api\DataTypes\ApiSegmentRefresh;
@@ -671,13 +672,24 @@ interface IResources
      * Adds a single piece of transactional data to a contact.
      *
      * /contacts/transactional-data/{collectionName}
-     * todo maybe look at contacts/transactional-data/{collectionName}/{key}
      *
      * @param string|XsString $collectionName
      * @param ApiTransactionalData $apiTransactionalData
      * @return ApiTransactionalData
      */
     public function PostContactsTransactionalData($collectionName, ApiTransactionalData $apiTransactionalData);
+
+    /**
+     * Replaces a piece of transactional data by key (logical equivalent to a delete and an insert).
+     *
+     * /contacts/transactional-data/{collectionName}/{key}
+     *
+     * @param string|XsString $collectionName
+     * @param int|XsInt $importId
+     * @param ApiJsonData $apiJsonData
+     * @return ApiTransactionalData
+     */
+    public function PostContactsTransactionalDataUpdate($collectionName, $importId, ApiJsonData $apiJsonData);
 
     /**
      * Deletes a piece of transactional data by key.
