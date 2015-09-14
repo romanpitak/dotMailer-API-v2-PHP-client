@@ -1,5 +1,5 @@
 {
-    "name": "willitscale/dotmailer-api-v2-client",
+    "name": "SykesCottagesDev/dotmailer-api-v2-client",
     "type": "library",
     "description": "Client library for the dotMailer v2 (REST) API.",
     "keywords": [
@@ -10,7 +10,7 @@
         "version 2",
         "client"
     ],
-    "homepage": "https://github.com/willitscale/dotMailer-API-v2-PHP-client",
+    "homepage": "https://github.com/SykesCottagesDev/dotMailer-API-v2-PHP-client",
     "license": "MIT",
     "authors": [
         {
@@ -23,7 +23,7 @@
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/willitscale/PHP-REST-Client.git"
+            "url": "https://github.com/SykesCottagesDev/PHP-REST-Client.git"
         }
     ],
     "require": {
