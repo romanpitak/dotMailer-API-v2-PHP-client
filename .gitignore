@@ -1,4 +1,5 @@
 .idea
+api_wadl.xml
 vendor
 composer.lock
 
