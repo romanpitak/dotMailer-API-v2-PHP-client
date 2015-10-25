@@ -7,6 +7,12 @@ vendor: composer.json
 api_wadl.xml:
 	curl 'http://api.dotmailer.com/v2/help/wadl' --output $@
 
+testDataTypes: vendor api_wadl.xml
+	phpunit --testsuite "Data types"
+
+testWadlCoverage: vendor api_wadl.xml
+	phpunit --testsuite "Wadl coverage"
+
 test: vendor api_wadl.xml
 	phpunit
 

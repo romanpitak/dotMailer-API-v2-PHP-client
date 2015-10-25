@@ -13,6 +13,9 @@
         <testsuite name="Data types">
             <directory suffix="Test.php">tests/DataTypes</directory>
         </testsuite>
+        <testsuite name="Wadl coverage">
+            <file>tests/WadlCoverageTest.php</file>
+        </testsuite>
     </testsuites>
     <filter>
         <whitelist>
