@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.1.1
+
+**Sep 15, 2015**
+
+- added `Resources::PostContactsTransactionalDataUpdate()` corresponding to
+  [/v2/contacts/transactional-data/{collectionName}/{key}](https://api.dotmailer.com/v2/help/wadl#ContactsTransactionalData)
+
 ## v1.1.0
 
 **Sep 9, 2015**
