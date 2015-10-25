@@ -1,6 +1,26 @@
 # Changelog
 
-## 1.0.11
+## v1.1.0
+
+**Sep 9, 2015**
+
+- **Programs and enrolments** added:
+    - `DataTypes/ApiProgram`
+    - `DataTypes/ApiProgramEnrolment`
+    - `DataTypes/ApiProgramEnrolmentList`
+    - `DataTypes/ApiProgramEnrolmentStatus`
+    - `DataTypes/ApiProgramList`
+    - `DataTypes/ApiProgramStatus`
+    - in `Resources/Resources`:
+        - `GetProgramById(XsInt $programId) -> ApiProgram`
+        - `PostProgramsEnrolments(ApiProgramEnrolment $apiProgramEnrolment)`
+        - `GetProgramsEnrolmentByEnrolmentId($enrolmentId) -> ApiProgramEnrolment`
+        - `GetProgramsEnrolmentReportFaults($enrolmentId) -> ApiProgramEnrolment`
+        - `GetProgramsEnrolmentByStatus($status, $select = 1000, $skip = 0) -> ApiProgramEnrolmentList`
+        - `GetPrograms($select = 1000, $skip = 0) -> ApiProgramList`
+- minor formatting fixes
+
+## v1.0.11
 
 **Jun 12, 2015**
 
