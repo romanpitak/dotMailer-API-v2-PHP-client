@@ -14,6 +14,8 @@ abstract class EnumTest extends Grammar
 {
 
     /**
+     * Test if I (the class) am still mentioned in the wadl specification.
+     *
      * @return \SimpleXMLElement
      */
     public function testNotDeprecated()
@@ -28,6 +30,8 @@ abstract class EnumTest extends Grammar
     }
 
     /**
+     * Test if the tested class exists in the implementation.
+     *
      * @return \ReflectionClass
      */
     public function testClassExists()
@@ -37,6 +41,8 @@ abstract class EnumTest extends Grammar
     }
 
     /**
+     * Test enum construction failure when using invalid value.
+     *
      * @depends testClassExists
      *
      * @expectedException \DotMailer\Api\DataTypes\InvalidValueException
@@ -47,6 +53,8 @@ abstract class EnumTest extends Grammar
     }
 
     /**
+     * Test that all values and just the values from the wadl restrictions are represented as constants.
+     *
      * @depends testNotDeprecated
      * @depends testClassExists
      *
@@ -65,7 +73,7 @@ abstract class EnumTest extends Grammar
     }
 
     /**
-     * Test that restrictions from the WADL specification match the allowed values and the constants of the Enum class
+     * Test that restrictions from the WADL specification match the allowed values and the constants of the Enum class.
      *
      * @depends testNotDeprecated
      * @depends testClassExists
