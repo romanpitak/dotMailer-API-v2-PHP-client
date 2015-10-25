@@ -31,4 +31,3 @@ abstract class Grammar extends \PHPUnit_Framework_TestCase
     }
 
 }
-
