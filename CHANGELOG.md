@@ -1,3 +1,9 @@
+# v1.1.2
+
+**Oct 26, 2015**
+
+- added `ApiTransactionalDataImportFaultReason::JSON_NUMBER_VALUE_TOO_LARGE` constant
+
 # v1.1.1
 
 **Sep 15, 2015**
