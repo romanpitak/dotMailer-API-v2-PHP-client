@@ -23,7 +23,7 @@ abstract class MagicArray implements \ArrayAccess, \Iterator, IDataType
                 if (!is_string($value)) { // convert to string
                     $value = (string)$value;
                 }
-                $value = json_decode($value, true, 512, JSON_BIGINT_AS_STRING);
+				$value = $this->jsonDecodeBigIntAsString($value, true, 512);
             }
             // assign
             if (!is_null($value)) {
@@ -33,6 +33,24 @@ abstract class MagicArray implements \ArrayAccess, \Iterator, IDataType
             }
         }
     }
+
+	private jsonDecodeBigIntAsString($json, $assoc = false, $depth = 512)
+	{
+		if (version_compare(PHP_VERSION, '5.4.0', '>=') &&
+			!(defined('JSON_C_VERSION') && PHP_INT_SIZE > 4)
+		) {
+			return json_decode($json, $assoc, $depth);
+		}
+
+		$maxIntLength = strlen((string) PHP_INT_MAX) - 1;
+		$jsonWithoutBigInts = preg_replace(
+			'/:\s*(-?\d{'.$maxIntLength.',})/',
+			': "$1"',
+			$json
+		);
+
+		return json_decode($jsonWithoutBigInts);
+	}
 
     /**
      * @param $offset
