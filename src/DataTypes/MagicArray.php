@@ -34,7 +34,7 @@ abstract class MagicArray implements \ArrayAccess, \Iterator, IDataType
         }
     }
 
-	private jsonDecodeBigIntAsString($json, $assoc = false, $depth = 512)
+	private function jsonDecodeBigIntAsString($json, $assoc = false, $depth = 512)
 	{
 		if (version_compare(PHP_VERSION, '5.4.0', '>=') &&
 			!(defined('JSON_C_VERSION') && PHP_INT_SIZE > 4)
