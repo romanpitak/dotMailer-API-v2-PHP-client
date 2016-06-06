@@ -49,7 +49,7 @@ abstract class MagicArray implements \ArrayAccess, \Iterator, IDataType
 			$json
 		);
 
-		return json_decode($jsonWithoutBigInts);
+		return json_decode($jsonWithoutBigInts, $assoc);
 	}
 
     /**
