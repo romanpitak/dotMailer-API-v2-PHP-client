@@ -53,7 +53,7 @@ abstract class MagicArray implements \ArrayAccess, \Iterator, IDataType
         } else {
             $max_int_length = strlen((string) PHP_INT_MAX) - 1;
             $json_without_bigints = preg_replace('/:\s*(-?\d{'.$max_int_length.',})/', ': "$1"', $json);
-            return json_decode($json_without_bigints, $assoc);
+            return json_decode($json_without_bigints, $assoc, $depth);
         }
     }
 
