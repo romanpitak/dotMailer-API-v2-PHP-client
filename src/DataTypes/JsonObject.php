@@ -57,7 +57,7 @@ abstract class JsonObject extends MagicArray
     protected function convertValue($value, $offset)
     {
         if (is_null($value)) {
-            return new Null();
+            return new NullDataType();
         }
         $convertedOffset = $this->convertOffset($offset);
         $dataClass = $this->classes[$convertedOffset];
