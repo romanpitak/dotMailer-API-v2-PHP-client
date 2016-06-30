@@ -52,6 +52,7 @@ use DotMailer\Api\DataTypes\ApiResubscribeResult;
 use DotMailer\Api\DataTypes\ApiSegmentList;
 use DotMailer\Api\DataTypes\ApiSegmentRefresh;
 use DotMailer\Api\DataTypes\ApiSms;
+use DotMailer\Api\DataTypes\ApiSurveyList;
 use DotMailer\Api\DataTypes\ApiTemplate;
 use DotMailer\Api\DataTypes\ApiTemplateList;
 use DotMailer\Api\DataTypes\ApiTransactionalData;
@@ -718,5 +719,11 @@ final class Resources implements IResources
     {
         $url = sprintf("templates?select=%s&skip=%s", $select, $skip);
         return new ApiTemplateList($this->execute($url));
+    }
+
+    public function GetSurveys($assignedToAddressBookOnly = false, $select = 500, $skip = 0)
+    {
+        $url = sprintf("surveys?assignedToAddressBookOnly=%s&select=%s&skip=%s", $assignedToAddressBookOnly ? 'true' : 'false', $select, $skip);
+        return new ApiSurveyList($this->execute($url));
     }
 }

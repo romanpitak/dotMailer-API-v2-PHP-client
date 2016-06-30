@@ -53,6 +53,7 @@ use DotMailer\Api\DataTypes\ApiResubscribeResult;
 use DotMailer\Api\DataTypes\ApiSegmentList;
 use DotMailer\Api\DataTypes\ApiSegmentRefresh;
 use DotMailer\Api\DataTypes\ApiSms;
+use DotMailer\Api\DataTypes\ApiSurveyList;
 use DotMailer\Api\DataTypes\ApiTemplateList;
 use DotMailer\Api\DataTypes\ApiTransactionalData;
 use DotMailer\Api\DataTypes\ApiTransactionalDataImport;
@@ -1024,5 +1025,16 @@ interface IResources
      * @return ApiTemplateList
      */
     public function GetTemplates($select = 1000, $skip = 0);
+
+
+    /**
+     * Gets list of all surveys
+     *
+     * @param bool $assignedToAddressBookOnly
+     * @param int $select
+     * @param int $skip
+     * @return ApiSurveyList
+     */
+    public function GetSurveys($assignedToAddressBookOnly = false, $select = 500, $skip = 0);
 
 }
