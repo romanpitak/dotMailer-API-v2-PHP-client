@@ -721,6 +721,9 @@ final class Resources implements IResources
         return new ApiTemplateList($this->execute($url));
     }
 
+    /*
+     *  ========== surveys ==========
+     */
     public function GetSurveys($assignedToAddressBookOnly = false, $select = 500, $skip = 0)
     {
         $url = sprintf("surveys?assignedToAddressBookOnly=%s&select=%s&skip=%s", $assignedToAddressBookOnly ? 'true' : 'false', $select, $skip);
