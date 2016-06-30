@@ -9,6 +9,7 @@
 
 namespace DotMailer\Api\Resources;
 
+use DateTime;
 use DotMailer\Api\DataTypes\ApiAccount;
 use DotMailer\Api\DataTypes\ApiAddressBook;
 use DotMailer\Api\DataTypes\ApiAddressBookList;
@@ -53,6 +54,7 @@ use DotMailer\Api\DataTypes\ApiSegmentList;
 use DotMailer\Api\DataTypes\ApiSegmentRefresh;
 use DotMailer\Api\DataTypes\ApiSms;
 use DotMailer\Api\DataTypes\ApiSurveyList;
+use DotMailer\Api\DataTypes\ApiSurveyResponseList;
 use DotMailer\Api\DataTypes\ApiTemplate;
 use DotMailer\Api\DataTypes\ApiTemplateList;
 use DotMailer\Api\DataTypes\ApiTransactionalData;
@@ -722,11 +724,29 @@ final class Resources implements IResources
     }
 
     /*
-     *  ========== surveys ==========
+     * ========== surveys ==========
      */
+
     public function GetSurveys($assignedToAddressBookOnly = false, $select = 500, $skip = 0)
     {
-        $url = sprintf("surveys?assignedToAddressBookOnly=%s&select=%s&skip=%s", $assignedToAddressBookOnly ? 'true' : 'false', $select, $skip);
+        $url = sprintf(
+            "surveys?assignedToAddressBookOnly=%s&select=%s&skip=%s",
+            $assignedToAddressBookOnly ? 'true' : 'false',
+            $select,
+            $skip
+        );
         return new ApiSurveyList($this->execute($url));
+    }
+
+    public function GetSurveyResponsesWithActivitySince($id, DateTime $date, $select = 500, $skip = 0)
+    {
+        $url = sprintf(
+            "surveys/%d/responses/with-activity-since/%s?select=%s&skip=%s",
+            $id,
+            $date->format('Y-m-d%20H:i:s'),
+            $select,
+            $skip
+        );
+        return new ApiSurveyResponseList($this->execute($url));
     }
 }

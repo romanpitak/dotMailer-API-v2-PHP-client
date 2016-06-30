@@ -10,6 +10,7 @@
 namespace DotMailer\Api\Resources;
 
 
+use DateTime;
 use DotMailer\Api\DataTypes\ApiAccount;
 use DotMailer\Api\DataTypes\ApiAddressBook;
 use DotMailer\Api\DataTypes\ApiAddressBookList;
@@ -1036,5 +1037,16 @@ interface IResources
      * @return ApiSurveyList
      */
     public function GetSurveys($assignedToAddressBookOnly = false, $select = 500, $skip = 0);
+
+    /**
+     * Gets all survey responses since a specified date for a specified survey
+     *
+     * @param int $id The Survey Id
+     * @param DateTime $date The DateTime since to check for
+     * @param int $select
+     * @param int $skip
+     * @return ApiSurveyResponseList
+     */
+    public function GetSurveyReponsesWithActivitySince($id, DateTime $date, $select = 500, $skip = 0);
 
 }
