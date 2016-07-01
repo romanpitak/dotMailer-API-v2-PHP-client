@@ -1,3 +1,9 @@
+# v1.1.3
+
+**Jul 01, 2016**
+
+- Fixed `JSON_BIGINT_AS_STRING` for older servers
+
 # v1.1.2
 
 **Oct 26, 2015**
