@@ -6,7 +6,7 @@
 [![Code Climate](https://codeclimate.com/github/romanpitak/dotMailer-API-v2-PHP-client/badges/gpa.svg)](https://codeclimate.com/github/romanpitak/dotMailer-API-v2-PHP-client)
 [![Codacy Badge](https://www.codacy.com/project/badge/80aa496d952248c69a5352bbf159884a)](https://www.codacy.com/public/roman/dotMailer-API-v2-PHP-client)
 
-(c) 2014-2015 Roman Piták, http://pitak.net <roman@pitak.net>
+(c) 2014-2016 Roman Piták, http://pitak.net <roman@pitak.net>
 
 PHP client library for the dotMailer v2 (REST) API with **multiple accounts support!**
 
