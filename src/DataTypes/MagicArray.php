@@ -23,7 +23,7 @@ abstract class MagicArray implements \ArrayAccess, \Iterator, IDataType
                 if (!is_string($value)) { // convert to string
                     $value = (string)$value;
                 }
-                $value = json_decode($value, true, 512, JSON_BIGINT_AS_STRING);
+                $value = $this->json_decode_bigint_as_string($value, true, 512);
             }
             // assign
             if (!is_null($value)) {
@@ -31,6 +31,29 @@ abstract class MagicArray implements \ArrayAccess, \Iterator, IDataType
                     $this[$key] = $val;
                 }
             }
+        }
+    }
+
+    /**
+     *
+     * In PHP >=5.4.0, json_decode() accepts an options parameter, that allows you
+     * to specify that large ints should be treated as strings, rather than the
+     * PHP default behaviour of converting them to floats.
+     *
+     * Not all servers will support that, however, so for older versions we must
+     * manually detect large ints in the JSON string and quote them (thus converting
+     * them to strings) before decoding, hence the preg_replace() call.
+     *
+     * @link http://stackoverflow.com/a/27909889/1255333
+     * @param $input
+     */
+    private function json_decode_bigint_as_string($json, $assoc = false, $depth = 512) {
+        if (version_compare(PHP_VERSION, '5.4.0', '>=') && !(defined('JSON_C_VERSION') && PHP_INT_SIZE > 4)) {
+            return json_decode($json, $assoc, $depth);
+        } else {
+            $max_int_length = strlen((string) PHP_INT_MAX) - 1;
+            $json_without_bigints = preg_replace('/:\s*(-?\d{'.$max_int_length.',})/', ': "$1"', $json);
+            return json_decode($json_without_bigints, $assoc, $depth);
         }
     }
 
