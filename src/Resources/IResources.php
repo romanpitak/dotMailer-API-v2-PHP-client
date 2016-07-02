@@ -55,6 +55,7 @@ use DotMailer\Api\DataTypes\ApiSegmentList;
 use DotMailer\Api\DataTypes\ApiSegmentRefresh;
 use DotMailer\Api\DataTypes\ApiSms;
 use DotMailer\Api\DataTypes\ApiSurveyList;
+use DotMailer\Api\DataTypes\ApiSurveyResponseList;
 use DotMailer\Api\DataTypes\ApiTemplateList;
 use DotMailer\Api\DataTypes\ApiTransactionalData;
 use DotMailer\Api\DataTypes\ApiTransactionalDataImport;
@@ -1047,6 +1048,6 @@ interface IResources
      * @param int $skip
      * @return ApiSurveyResponseList
      */
-    public function GetSurveyReponsesWithActivitySince($id, DateTime $date, $select = 500, $skip = 0);
+    public function GetSurveyResponsesWithActivitySince($id, DateTime $date, $select = 500, $skip = 0);
 
 }
