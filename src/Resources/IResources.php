@@ -10,6 +10,7 @@
 namespace DotMailer\Api\Resources;
 
 
+use DateTime;
 use DotMailer\Api\DataTypes\ApiAccount;
 use DotMailer\Api\DataTypes\ApiAddressBook;
 use DotMailer\Api\DataTypes\ApiAddressBookList;
@@ -53,6 +54,8 @@ use DotMailer\Api\DataTypes\ApiResubscribeResult;
 use DotMailer\Api\DataTypes\ApiSegmentList;
 use DotMailer\Api\DataTypes\ApiSegmentRefresh;
 use DotMailer\Api\DataTypes\ApiSms;
+use DotMailer\Api\DataTypes\ApiSurveyList;
+use DotMailer\Api\DataTypes\ApiSurveyResponseList;
 use DotMailer\Api\DataTypes\ApiTemplateList;
 use DotMailer\Api\DataTypes\ApiTransactionalData;
 use DotMailer\Api\DataTypes\ApiTransactionalDataImport;
@@ -1024,5 +1027,27 @@ interface IResources
      * @return ApiTemplateList
      */
     public function GetTemplates($select = 1000, $skip = 0);
+
+
+    /**
+     * Gets list of all surveys
+     *
+     * @param bool $assignedToAddressBookOnly
+     * @param int $select
+     * @param int $skip
+     * @return ApiSurveyList
+     */
+    public function GetSurveys($assignedToAddressBookOnly = false, $select = 500, $skip = 0);
+
+    /**
+     * Gets all survey responses since a specified date for a specified survey
+     *
+     * @param int $id The Survey Id
+     * @param DateTime $date The DateTime since to check for
+     * @param int $select
+     * @param int $skip
+     * @return ApiSurveyResponseList
+     */
+    public function GetSurveyResponsesWithActivitySince($id, DateTime $date, $select = 500, $skip = 0);
 
 }
