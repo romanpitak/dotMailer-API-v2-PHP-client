@@ -55,6 +55,8 @@ use DotMailer\Api\DataTypes\ApiSegmentList;
 use DotMailer\Api\DataTypes\ApiSegmentRefresh;
 use DotMailer\Api\DataTypes\ApiSms;
 use DotMailer\Api\DataTypes\ApiSurveyList;
+use DotMailer\Api\DataTypes\ApiSurveyFieldList;
+use DotMailer\Api\DataTypes\ApiSurveyFieldsList;
 use DotMailer\Api\DataTypes\ApiSurveyResponseList;
 use DotMailer\Api\DataTypes\ApiTemplateList;
 use DotMailer\Api\DataTypes\ApiTransactionalData;
@@ -1028,6 +1030,9 @@ interface IResources
      */
     public function GetTemplates($select = 1000, $skip = 0);
 
+    /*
+     * ========== surveys ==========
+     */
 
     /**
      * Gets list of all surveys
@@ -1049,5 +1054,13 @@ interface IResources
      * @return ApiSurveyResponseList
      */
     public function GetSurveyResponsesWithActivitySince($id, DateTime $date, $select = 500, $skip = 0);
+
+    /**
+     * Gets all survey fields for a specified survey
+     *
+     * @param int $id The Survey Id
+     * @return ApiSurveyFieldsList
+     */
+    public function GetSurveyFields($id);
 
 }
