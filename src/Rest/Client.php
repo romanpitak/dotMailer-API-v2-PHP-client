@@ -41,7 +41,6 @@ class Client implements IClient
                 CURLOPT_SSL_VERIFYPEER => false
             ),
         ));
-
     }
 
     private static function getExceptionMessage($responseBodyString, $returnCode = null)

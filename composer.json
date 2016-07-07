@@ -23,7 +23,7 @@
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/SykesCottagesDev/PHP-REST-Client.git"
+            "url": "https://github.com/romanpitak/PHP-REST-Client.git"
         }
     ],
     "require": {

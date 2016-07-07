@@ -54,6 +54,8 @@ use DotMailer\Api\DataTypes\ApiSegmentList;
 use DotMailer\Api\DataTypes\ApiSegmentRefresh;
 use DotMailer\Api\DataTypes\ApiSms;
 use DotMailer\Api\DataTypes\ApiSurveyList;
+use DotMailer\Api\DataTypes\ApiSurveyField;
+use DotMailer\Api\DataTypes\ApiSurveyFieldsList;
 use DotMailer\Api\DataTypes\ApiSurveyResponseList;
 use DotMailer\Api\DataTypes\ApiTemplate;
 use DotMailer\Api\DataTypes\ApiTemplateList;
@@ -748,5 +750,14 @@ final class Resources implements IResources
             $skip
         );
         return new ApiSurveyResponseList($this->execute($url));
+    }
+
+    public function GetSurveyFields($id)
+    {
+        $url = sprintf(
+            "surveys/%d/fields",
+            $id
+        );
+        return new ApiSurveyFieldsList($this->execute($url));
     }
 }
