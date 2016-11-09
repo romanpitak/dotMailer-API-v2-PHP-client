@@ -138,3 +138,4 @@ $html2text = new Html2Text($htmlContent);
 $campaign->plainTextContent = $html2text->get_text();
 $account->UpdateCampaign($campaign);
 ```
+Forked Version
