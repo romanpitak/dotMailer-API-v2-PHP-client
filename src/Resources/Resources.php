@@ -357,7 +357,7 @@ final class Resources implements IResources
 
     public function GetCampaignsSendBySendId($sendId)
     {
-        return new ApiCampaignSend(sprintf("campaigns/send/%s", $sendId));
+        return new ApiCampaignSend($this->execute(sprintf("campaigns/send/%s", $sendId)));
     }
 
     public function GetCampaignsWithActivitySinceDate($dateTime, $select = 1000, $skip = 0)
