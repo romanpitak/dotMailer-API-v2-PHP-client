@@ -19,6 +19,7 @@ interface IContainer extends \ArrayAccess, \Iterator
 
     const USERNAME = 'username';
     const PASSWORD = 'password';
+    const REGION = 'https://api.dotmailer.com';
 
     /**
      * Get the Resources object initialized for the $name account

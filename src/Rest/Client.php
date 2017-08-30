@@ -26,11 +26,12 @@ class Client implements IClient
     /** @var \RestClient\Client */
     private $restClient;
 
-    public function __construct($username, $password)
+    public function __construct($username, $password, $region = 'https://api.dotmailer.com')
     {
+        $baseUrl = $region . '/v2';
 
         $this->restClient = new \RestClient\Client(array(
-            Request::BASE_URL_KEY => 'https://api.dotmailer.com/v2',
+            Request::BASE_URL_KEY => $baseUrl,
             Request::USERNAME_KEY => $username,
             Request::PASSWORD_KEY => $password,
             Request::USER_AGENT_KEY => 'romanpitak/dotmailer-api-v2-php-client',

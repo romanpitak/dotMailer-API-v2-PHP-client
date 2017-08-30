@@ -54,7 +54,7 @@ final class Container implements IContainer
         if ((!isset($credentials[self::USERNAME])) || (!isset($credentials[self::PASSWORD]))) {
             throw new Exception('Invalid credentials');
         }
-        $restClient = new Client($credentials[self::USERNAME], $credentials[self::PASSWORD]);
+        $restClient = new Client($credentials[self::USERNAME], $credentials[self::PASSWORD], $credentials[self::REGION]);
         return new Resources($restClient);
     }
 
