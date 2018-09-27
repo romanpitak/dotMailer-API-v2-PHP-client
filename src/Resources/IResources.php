@@ -59,6 +59,7 @@ use DotMailer\Api\DataTypes\ApiTransactionalDataImport;
 use DotMailer\Api\DataTypes\ApiTransactionalDataImportReport;
 use DotMailer\Api\DataTypes\ApiTransactionalDataList;
 use DotMailer\Api\DataTypes\Guid;
+use DotMailer\Api\DataTypes\IApiEmailTriggeredCampaign;
 use DotMailer\Api\DataTypes\IApiTemplate;
 use DotMailer\Api\DataTypes\Int32List;
 use DotMailer\Api\DataTypes\XsBoolean;
@@ -1024,4 +1025,10 @@ interface IResources
      */
     public function GetTemplates($select = 1000, $skip = 0);
 
+    /**
+     * Send a triggered email campaign.
+     *
+     * @param IApiEmailTriggeredCampaign $apiEmailTriggeredCampaign
+     */
+    public function PostEmailTriggeredCampaign(IApiEmailTriggeredCampaign $apiEmailTriggeredCampaign);
 }
