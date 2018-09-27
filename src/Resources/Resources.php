@@ -59,6 +59,7 @@ use DotMailer\Api\DataTypes\ApiTransactionalDataImport;
 use DotMailer\Api\DataTypes\ApiTransactionalDataImportReport;
 use DotMailer\Api\DataTypes\ApiTransactionalDataList;
 use DotMailer\Api\DataTypes\Guid;
+use DotMailer\Api\DataTypes\IApiEmailTriggeredCampaign;
 use DotMailer\Api\DataTypes\IApiTemplate;
 use DotMailer\Api\DataTypes\XsDateTime;
 use DotMailer\Api\DataTypes\XsInt;
@@ -718,5 +719,14 @@ final class Resources implements IResources
     {
         $url = sprintf("templates?select=%s&skip=%s", $select, $skip);
         return new ApiTemplateList($this->execute($url));
+    }
+
+    /*
+     * ========== Email ==========
+     */
+
+    public function PostEmailTriggeredCampaign(IApiEmailTriggeredCampaign $apiEmailTriggeredCampaign)
+    {
+        $this->execute('email/triggered-campaign', 'POST', $apiEmailTriggeredCampaign->toJson());
     }
 }
