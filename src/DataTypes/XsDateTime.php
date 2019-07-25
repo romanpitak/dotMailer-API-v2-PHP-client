@@ -21,7 +21,7 @@ final class XsDateTime implements IDataType
 
     public function toJson()
     {
-        return (string)$this->value;
+        return '"'.(string)$this->value.'"';
     }
 
     public function __toString()
